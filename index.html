@@ -213,10 +213,10 @@
             border-radius: 50%;
         }
 
-        /* Мобильная версия: большой логотип сверху, под ним — текст (как на десктопе, но вертикально) */
+        /* Мобильная версия: большой логотип сверху, под ним текст */
         @media (max-width: 780px) {
             .hero {
-                min-height: 480px; /* чуть больше места для вертикальной композиции */
+                min-height: 480px;
             }
             .hero-overlay {
                 flex-direction: column;
@@ -253,7 +253,6 @@
             }
         }
 
-        /* совсем маленькие экраны */
         @media (max-width: 480px) {
             .hero-logo {
                 width: 150px;
@@ -540,18 +539,74 @@
             color: #6B4F33;
         }
 
+        /* МОБИЛЬНЫЕ СТИЛИ — ТОЛЬКО ДЛЯ ЭКРАНОВ ДО 700px */
         @media (max-width: 700px) {
-            .hall-panorama { height: 400px; }
-            .panorama-text { font-size: 0.7rem; padding: 0.5rem 1.2rem; max-width: 70%; min-width: 160px; bottom: 16px; left: 16px; }
-            .vinyl-player { width: 110px; height: 110px; bottom: -10px; right: 12px; }
-            .expo-card { flex: 0 0 230px; }
-            .expo-img { height: 150px; border-radius: 20px; }
-            .hall-title-wrapper { padding: 0.8rem 1rem 0.3rem 1rem; }
-            .hall-title { font-size: 1.5rem; gap: 0.5rem; }
-            .carousel-label { margin: 0 1rem 0.5rem 1rem; font-size: 0.65rem; }
-            .track-outer { padding: 0.5rem 1rem 1rem 1rem; }
-            .carousel-nav { margin: 0.5rem 1rem 0.2rem 1rem; }
-            .c-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
+            /* Панорама: отключаем фиксированную высоту, делаем адаптивной с прокруткой */
+            .hall-panorama {
+                height: auto !important;
+                cursor: auto;
+                background: #1f1914;
+            }
+            .panorama-image-wrapper {
+                height: auto;
+                max-height: 60vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .panorama-img {
+                width: 100%;
+                height: auto;
+                transform: none !important;
+                transition: none;
+                pointer-events: auto;
+            }
+            /* Текст внутри панорамы — уменьшаем и смещаем */
+            .panorama-text {
+                font-size: 0.7rem;
+                padding: 0.5rem 1rem;
+                max-width: 70%;
+                min-width: 140px;
+                bottom: 16px;
+                left: 16px;
+                background: rgba(255, 248, 235, 0.9);
+            }
+            /* Пластинка: меньше, ближе к краю */
+            .vinyl-player {
+                width: 80px;
+                height: 80px;
+                bottom: -8px;
+                right: 12px;
+            }
+            /* Карусель карточек */
+            .expo-card {
+                flex: 0 0 230px;
+            }
+            .expo-img {
+                height: 150px;
+                border-radius: 20px;
+            }
+            .hall-title-wrapper {
+                padding: 0.8rem 1rem 0.3rem 1rem;
+            }
+            .hall-title {
+                font-size: 1.5rem;
+                gap: 0.5rem;
+            }
+            .carousel-label {
+                margin: 0 1rem 0.5rem 1rem;
+                font-size: 0.65rem;
+            }
+            .track-outer {
+                padding: 0.5rem 1rem 1rem 1rem;
+            }
+            .carousel-nav {
+                margin: 0.5rem 1rem 0.2rem 1rem;
+            }
+            .c-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -560,8 +615,8 @@
             .exhibition-intro .intro-text { font-size: 0.9rem; padding: 1rem 1.2rem; border-radius: 32px; }
             .hall-title { font-size: 1.3rem; }
             .expo-card { flex: 0 0 200px; }
-            .panorama-text { font-size: 0.65rem; padding: 0.4rem 0.9rem; max-width: 80%; min-width: 130px; bottom: 12px; left: 12px; }
-            .vinyl-player { width: 90px; height: 90px; bottom: -8px; right: 8px; }
+            .panorama-text { font-size: 0.65rem; padding: 0.4rem 0.8rem; max-width: 80%; min-width: 130px; bottom: 12px; left: 12px; }
+            .vinyl-player { width: 70px; height: 70px; bottom: -6px; right: 8px; }
             .c-arrow { width: 38px; height: 38px; }
             .carousel-label { font-size: 0.6rem; }
         }
@@ -855,7 +910,7 @@
 
 <script>
     // --------------------------------------------------------------
-    // БАЗА ЭКСПОНАТОВ (полная, все залы) — сохранена без изменений
+    // БАЗА ЭКСПОНАТОВ (полная, все залы) — без изменений
     // --------------------------------------------------------------
     const exhibitsDB = {
         hall1_shchi: { tag: "Зал1 · Блюдо", title: "Щи из квашеной капусты", img: "photos/1/unnamed.png", history: "Традиционные русские щи, томившиеся в печи 5–6 часов. Насыщенный кислый вкус, аромат укропа и сметаны.", ingredients: ["Капуста квашеная — 500 г", "Говядина — 600 г", "Картофель — 3 шт.", "Лук, морковь — по 1 шт.", "Лавровый лист, перец горошком"], steps: ["Сварить мясной бульон", "Добавить квашеную капусту, картофель, зажарку из лука и моркови", "Томить на малом огне 40 минут", "Подавать со сметаной и зеленью"] },
@@ -908,8 +963,8 @@
         { name: "Зал 5 · Утро перед детским садом", items: ["hall5_kakao","hall5_butterbrod","hall5_ovsyanka","hall5_grenki","hall5_sgushenka","hall5_zefir","hall5_oreshki","hall5_zapekanka_tvorog"], imgSrc: "photos/IMG_20260427_213125_388.jpg", textPan: "Какао с пенкой, овсяная каша, сгущёнка и орешки — лучшее поощрение.", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }
     ];
 
-    // Универсальное управление панорамой: колесо + тач
-    function setupPanoramaControls(panoramaElement, imgElement) {
+    // Функция для десктопной панорамы с трансформацией (мышь/колесо)
+    function setupDesktopPanorama(panoramaElement, imgElement) {
         let translateY = 0, maxTranslate = 0;
         let targetTranslate = 0;
         let animationFrame = null;
@@ -992,6 +1047,7 @@
     function buildHalls() {
         const container = document.getElementById("hallsStack");
         container.innerHTML = "";
+        const isMobile = window.innerWidth <= 700;
         hallsData.forEach((hall, idx) => {
             const card = document.createElement("div"); card.className = "hall-card";
             const titleWrap = document.createElement("div"); titleWrap.className = "hall-title-wrapper";
@@ -1025,7 +1081,10 @@
                 }
             });
             initCarousel(idx);
-            setupPanoramaControls(panoramaDiv, img);
+            // Для десктопа (ширина > 700) включаем сложную панораму, для мобильных — просто CSS-скролл, без JS-трансформаций
+            if (!isMobile) {
+                setupDesktopPanorama(panoramaDiv, img);
+            }
             initVinyl(vinylDiv, hall.audioSrc);
         });
     }

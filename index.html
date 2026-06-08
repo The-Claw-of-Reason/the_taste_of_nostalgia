@@ -400,20 +400,18 @@
             margin-bottom: 0.25rem;
         }
 
-        /* Мобильный текстовый блок (вынесен отдельно) */
+        /* Мобильный текстовый блок — без фона, рамок, теней, просто чистый текст */
         .mobile-hall-text {
-            background: #FFF8F0;
-            border: 1px solid #E6C87A;
-            border-radius: 24px;
-            padding: 0.9rem 1.2rem;
-            margin: 0.8rem 1rem 0 1rem;
+            padding: 0.8rem 1rem 0.2rem 1rem;
             font-size: 0.85rem;
             line-height: 1.5;
             color: #3E2F23;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background: transparent;
+            border: none;
+            box-shadow: none;
         }
         .mobile-hall-text p {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
 
         @keyframes spin {
@@ -556,7 +554,7 @@
             color: #6B4F33;
         }
 
-        /* Мобильные стили: панорама становится просто картинкой, текст вынесен */
+        /* Мобильные стили: панорама становится просто картинкой, текст вынесен и без фона */
         @media (max-width: 700px) {
             .hall-panorama {
                 height: auto;
@@ -625,7 +623,7 @@
             .exhibition-intro .intro-text { font-size: 0.9rem; padding: 1rem 1.2rem; border-radius: 32px; }
             .hall-title { font-size: 1.3rem; }
             .expo-card { flex: 0 0 200px; }
-            .mobile-hall-text { font-size: 0.75rem; padding: 0.6rem 0.8rem; margin: 0.8rem 0.8rem 0 0.8rem; }
+            .mobile-hall-text { padding: 0.6rem 0.8rem 0.2rem 0.8rem; font-size: 0.75rem; }
             .vinyl-player { width: 70px; height: 70px; bottom: 6px; right: 8px; }
             .c-arrow { width: 38px; height: 38px; }
             .carousel-label { font-size: 0.6rem; }
@@ -1070,7 +1068,7 @@
             img.onerror = () => { img.src = "https://placehold.co/1600x1000?text=Панорама+зала"; };
             imageWrapper.appendChild(img); panoramaDiv.appendChild(imageWrapper);
             
-            // Текстовое описание (внутреннее для десктопа, но для мобилы оно не будет добавлено в DOM? Для десктопа добавим)
+            // Текстовое описание (внутреннее для десктопа)
             const textSpan = document.createElement("div"); textSpan.className = "panorama-text";
             textSpan.innerHTML = hall.textPan.split(/[.!?] /).filter(s=>s.trim()).map(s=>`<p>${s.trim()}.</p>`).join('');
             
@@ -1078,16 +1076,15 @@
             panoramaDiv.appendChild(vinylDiv);
             
             if (!isMobile) {
-                // Десктоп: текст внутри панорамы
                 panoramaDiv.appendChild(textSpan);
             }
             card.appendChild(panoramaDiv);
             
-            // Для мобильной версии добавляем отдельный блок текста после панорамы
+            // Для мобильной версии добавляем отдельный блок текста без фона
             if (isMobile) {
                 const mobileTextBlock = document.createElement("div"); 
                 mobileTextBlock.className = "mobile-hall-text";
-                mobileTextBlock.innerHTML = textSpan.innerHTML; // копируем то же содержимое
+                mobileTextBlock.innerHTML = textSpan.innerHTML;
                 card.appendChild(mobileTextBlock);
             }
             

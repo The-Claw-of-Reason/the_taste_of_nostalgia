@@ -1,0 +1,763 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Культурный код России — Вкус ностальгии</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #FDF8F0;
+            font-family: 'Inter', sans-serif;
+            color: #2c1e12;
+            line-height: 1.5;
+        }
+
+        /* навигация */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #2A241C;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 5%;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #E9CD8A, #D4AF37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #F2E4C8;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            padding: 0.5rem 1.3rem;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: 500;
+            background: rgba(255,245,215,0.08);
+            transition: all 0.25s ease;
+        }
+
+        .nav-links a.active,
+        .nav-links a:hover {
+            background: #D4AF37;
+            color: #2A241C;
+        }
+
+        /* hero */
+        .hero {
+            position: relative;
+            height: 60vh;
+            min-height: 380px;
+            overflow: hidden;
+        }
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55);
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, rgba(0,0,0,0.55), rgba(0,0,0,0.2));
+            display: flex;
+            align-items: center;
+            padding: 0 7%;
+        }
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 6vw, 3.6rem);
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 4px 22px rgba(0,0,0,0.4);
+        }
+        .hero-text h1 em {
+            border-bottom: 3px solid #D4AF37;
+        }
+        .hero-text .sub {
+            font-size: 0.9rem;
+            color: rgba(255,250,225,0.9);
+            margin-top: 1rem;
+        }
+
+        /* ----- ЗАЛЫ ВЕРТИКАЛЬНО (друг за другом) ----- */
+        .halls-vertical-section {
+            padding: 2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .halls-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        .hall-card {
+            background: #fff;
+            border-radius: 48px;
+            overflow: hidden;
+            box-shadow: 0 25px 40px -18px rgba(0,0,0,0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hall-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 45px -20px rgba(0,0,0,0.3);
+        }
+        .hall-panorama {
+            width: 100%;
+            height: 360px;
+            background-size: cover;
+            background-position: center 30%;
+            position: relative;
+            border-radius: 48px 48px 0 0;
+        }
+        .panorama-text {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(255,255,245,0.94);
+            backdrop-filter: blur(4px);
+            padding: 0.9rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c1e12;
+            max-width: 55%;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 1px solid #f1e2cf;
+            line-height: 1.4;
+            pointer-events: none;
+        }
+        /* винил */
+        .vinyl-player {
+            position: absolute;
+            bottom: -20px;
+            right: 24px;
+            width: 95px;
+            height: 95px;
+            background-image: url('https://avatars.mds.yandex.net/get-mpic/16778995/2a00000198c2a5558f14c966abdc48c7c859/orig');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            z-index: 20;
+            filter: drop-shadow(0 12px 18px rgba(0,0,0,0.35));
+            transition: transform 0.15s ease;
+            border-radius: 50%;
+        }
+        .vinyl-player.spinning {
+            animation: spinVinyl 2s linear infinite;
+        }
+        @keyframes spinVinyl {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .vinyl-player:hover {
+            transform: scale(1.04);
+            filter: drop-shadow(0 0 8px #D4AF37);
+        }
+        .hall-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 1.2rem 1.8rem 0.4rem;
+            background: white;
+            letter-spacing: -0.3px;
+        }
+
+        /* карусель экспонатов внутри зала */
+        .carousel-block {
+            padding: 0.8rem 1rem 2rem 1rem;
+            background: white;
+        }
+        .carousel-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: #b38f62;
+            margin: 0 1rem 1rem 1rem;
+            text-transform: uppercase;
+        }
+        .track-outer {
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 0.5rem 1rem 1rem 1rem;
+            scrollbar-width: thin;
+            border-radius: 28px;
+        }
+        .cards-track {
+            display: flex;
+            gap: 1.2rem;
+            width: max-content;
+        }
+        .expo-card {
+            flex: 0 0 220px;
+            background: #fff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid #efe0cf;
+        }
+        .expo-card:hover {
+            transform: translateY(-6px);
+            border-color: #D4AF37;
+            box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15);
+        }
+        .expo-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .expo-info {
+            padding: 0.8rem;
+        }
+        .expo-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .expo-type {
+            font-size: 0.6rem;
+            color: #9B4B2C;
+            background: #fbeadf;
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            margin-top: 0.5rem;
+        }
+        .carousel-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin: 1rem 1.5rem 0.2rem;
+        }
+        .c-arrow {
+            width: 40px;
+            height: 40px;
+            background: #fff2e2;
+            border-radius: 60px;
+            border: 1px solid #dec9ae;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .c-arrow:hover {
+            background: #D4AF37;
+            color: white;
+            border-color: #D4AF37;
+        }
+        .c-counter {
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: #fff0df;
+            padding: 0.4rem 1rem;
+            border-radius: 60px;
+        }
+
+        /* страница рецептов */
+        #recipesPage {
+            padding: 2rem 5% 3rem;
+            display: none;
+        }
+        #recipesPage.active {
+            display: block;
+        }
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .recipe-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.05);
+            transition: 0.2s;
+            position: relative;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 28px rgba(0,0,0,0.1);
+        }
+        .recipe-img {
+            height: 170px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .recipe-info {
+            padding: 1rem 1.2rem 1.2rem;
+        }
+        .recipe-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+        .recipe-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: #f1e2d3;
+            padding: 0.2rem 0.8rem;
+            border-radius: 60px;
+            margin: 0.5rem 0 0.4rem;
+        }
+        .delete-recipe {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            border: none;
+            border-radius: 40px;
+            width: 32px;
+            height: 32px;
+            font-size: 1.1rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .delete-recipe:hover {
+            background: #b13e3e;
+            transform: scale(1.05);
+        }
+        .add-form {
+            background: #FFF6EA;
+            padding: 1.8rem;
+            border-radius: 40px;
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .add-form input, .add-form textarea, .add-form select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            margin: 0.4rem 0 1rem;
+            border-radius: 40px;
+            border: 1px solid #e6d5c0;
+            font-family: inherit;
+            background: white;
+        }
+        .submit-btn {
+            background: #2A241C;
+            color: white;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .submit-btn:hover {
+            background: #D4AF37;
+            color: #2A241C;
+        }
+        /* модальное окно */
+        .modal-bg {
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-bg.open { display: flex; }
+        .modal-container {
+            width: 90vw;
+            max-width: 700px;
+            max-height: 85vh;
+            background: #FFFCF5;
+            border-radius: 48px;
+            overflow-y: auto;
+            box-shadow: 0 30px 40px rgba(0,0,0,0.3);
+        }
+        .modal-close {
+            float: right;
+            background: #1e160fcc;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            margin: 14px;
+        }
+        .modal-img { width: 100%; height: 240px; object-fit: cover; border-radius: 48px 48px 0 0; }
+        .modal-body { padding: 1.2rem 2rem 2rem; }
+        .recipe-btn { background: #9B4B2C; border: none; padding: 0.5rem 1.4rem; border-radius: 60px; color: white; cursor: pointer; margin-top: 0.6rem; font-weight: 500; }
+        .recipe-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: #fef7ef; border-radius: 28px; margin-top: 1rem; padding: 0 1rem; }
+        .recipe-panel.open { max-height: 550px; padding: 1rem; }
+        .recipe-panel ul, .recipe-panel ol { margin-left: 1.2rem; margin-top: 0.5rem; }
+        @media (max-width: 700px) {
+            .hall-panorama { height: 260px; }
+            .panorama-text { font-size: 0.7rem; max-width: 75%; padding: 0.5rem 1rem; bottom: 12px; left: 12px; }
+            .vinyl-player { width: 70px; height: 70px; bottom: -12px; right: 12px; }
+            .expo-card { flex: 0 0 180px; }
+            .expo-img { height: 130px; }
+            .hall-title { font-size: 1.3rem; padding: 1rem 1.2rem 0.2rem; }
+        }
+        @media (max-width: 480px) {
+            .vinyl-player { width: 60px; height: 60px; }
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 5%;
+            background: #ece1cf;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+        }
+        .empty-recipes-msg {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 2rem;
+            color: #7e6953;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<nav class="main-nav">
+    <div class="logo">КУЛЬТУРНЫЙ КОД РОССИИ • ВКУС НОСТАЛЬГИИ</div>
+    <div class="nav-links">
+        <a id="mainTabBtn" class="active">ЭКСПОЗИЦИЯ</a>
+        <a id="recipesTabBtn">КНИГА РЕЦЕПТОВ</a>
+    </div>
+</nav>
+
+<main id="mainPage">
+    <div class="hero">
+        <img src="photos/vibehype_20260426_184729_ca34a99e.jpg" alt="Русское застолье" onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600'">
+        <div class="hero-overlay"><div class="hero-text"><h1>Культурный код России<br><em>Вкус ностальгии</em></h1><div class="sub">5 залов, 8 историй в каждом — мультисенсорное путешествие</div></div></div>
+    </div>
+    <div class="halls-vertical-section">
+        <div id="hallsStack" class="halls-stack"></div>
+    </div>
+    <footer><small>Тюмень 2026 · Вдохновлено семейными архивами</small></footer>
+</main>
+
+<div id="recipesPage">
+    <div style="text-align:center; margin-bottom:1.5rem;"><h2 style="font-family:'Playfair Display';">📖 Книга рецептов</h2><p>Сохраняйте блюда из экспозиции и свои семейные рецепты</p></div>
+    <div class="add-form">
+        <label>🍲 Название блюда</label><input type="text" id="newTitle" placeholder="Бабушкин пирог">
+        <label>🏷️ Раздел</label><select id="newTag"><option>Блюдо</option><option>Напиток</option><option>Десерт</option><option>Выпечка</option></select>
+        <label>📝 Ингредиенты</label><textarea id="newIngredients" rows="2" placeholder="Мука, яйца, молоко..."></textarea>
+        <label>👩‍🍳 Приготовление</label><textarea id="newSteps" rows="3" placeholder="Пошагово..."></textarea>
+        <button id="addCustomRecipeBtn" class="submit-btn">➕ Сохранить рецепт</button>
+    </div>
+    <div id="recipesGrid" class="recipes-grid"></div>
+</div>
+
+<div class="modal-bg" id="modalBg"><div class="modal-container"><button class="modal-close" onclick="closeModal()">✕</button><img class="modal-img" id="modalImg"><div class="modal-body"><div id="modalTag" style="color:#9B4B2C; font-weight:500;"></div><h3 id="modalTitle" style="font-family:'Playfair Display'; margin:0.3rem 0;"></h3><p id="modalHistory" style="margin:0.8rem 0;"></p><button class="recipe-btn" id="recipeToggleBtn">📖 Показать рецепт ▼</button><div class="recipe-panel" id="recipePanel"><div id="recipeInner"></div><button id="saveRecipeModalBtn" style="margin-top:1rem; background:#D4AF37; border:none; padding:0.5rem 1.2rem; border-radius:40px; font-weight:500; cursor:pointer;">📌 Сохранить в книгу</button></div></div></div></div>
+
+<script>
+    // ---------- БАЗА ЭКСПОНАТОВ (8 на зал, ключи исправлены) ----------
+    const exhibitsDB = {
+        shchi:{tag:"Зал1 · Блюдо",title:"Щи суточные",img:"https://images.unsplash.com/photo-1583833008338-31a6657917ab?w=800",history:"Квашеная капуста, томившаяся в печи 5 часов",ingredients:["Капуста квашеная","Говядина","Лук","Морковь","Лавровый лист"],steps:["Обжарить мясо","Добавить капусту и тушить","Томить в печи/духовке"]},
+        kasha:{tag:"Зал1 · Блюдо",title:"Гречневая каша",img:"https://images.unsplash.com/photo-1606851091851-e8c8c0fca5ba?w=800",history:"Рассыпчатая гречка с маслом, символ сытости",ingredients:["Гречневая крупа","Масло сливочное","Соль"],steps:["Перебрать крупу","Сварить до рассыпчатости","Заправить маслом"]},
+        rastegai:{tag:"Зал1 · Выпечка",title:"Расстегай",img:"https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800",history:"Открытый пирожок с рыбой или мясом",ingredients:["Дрожжевое тесто","Фарш рыбный","Лук","Яйцо"],steps:["Сформировать пирожок с отверстием","Запечь","Полить бульоном"]},
+        kisel:{tag:"Зал1 · Напиток",title:"Овсяный кисель",img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=800",history:"Густой кисель, русский десерт-еда",ingredients:["Овсяные хлопья","Вода","Мёд"],steps:["Замочить","Процедить","Варить до густоты"]},
+        kalach:{tag:"Зал1 · Выпечка",title:"Калач",img:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800",history:"Знаменитый калач с ручкой",ingredients:["Мука","Дрожжи","Молоко"],steps:["Замесить","Выпечь","Подавать горячим"]},
+        sbiten:{tag:"Зал1 · Напиток",title:"Сбитень",img:"https://images.unsplash.com/photo-1569072451827-9f11286e3302?w=800",history:"Медовый сбитень с пряностями",ingredients:["Мёд","Имбирь","Корица","Гвоздика"],steps:["Кипятить воду с мёдом","Добавить специи","Настоять"]},
+        perepelacha:{tag:"Зал1 · Блюдо",title:"Перепеча",img:"https://images.unsplash.com/photo-1571415063410-eec0e0f717f1?w=800",history:"Маленький пирожок с начинкой",ingredients:["Ржаная мука","Картофельное пюре","Сметана"],steps:["Слепить","Выпечь в печи"]},
+        medovukha:{tag:"Зал1 · Напиток",title:"Медовуха",img:"https://images.unsplash.com/photo-1607532941433-6d7b1c3c3e3a?w=800",history:"Слабоалкогольный медовый напиток",ingredients:["Мёд","Дрожжи","Хмель"],steps:["Сбродить","Настоять"]},
+        beefstroganoff:{tag:"Зал2 · Блюдо",title:"Бефстроганов",img:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800",history:"Мясо в сметанном соусе",ingredients:["Говядина","Сметана","Лук"],steps:["Нарезать соломкой","Обжарить","Тушить в сметане"]},
+        pirozhok_osetr:{tag:"Зал2 · Выпечка",title:"Пирожок с осетриной",img:"https://images.unsplash.com/photo-1625938144755-6c4c9b5e6e4b?w=800",history:"Императорские балы",ingredients:["Сдобное тесто","Осетрина","Рис"],steps:["Слепить","Запечь"]},
+        kulebyaka:{tag:"Зал2 · Пирог",title:"Кулебяка",img:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800",history:"Многослойный пирог с начинками",ingredients:["Тесто","Лосось","Грибы","Рис"],steps:["Выложить слои","Запечь"]},
+        ptifur:{tag:"Зал2 · Десерт",title:"Птифуры",img:"https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=800",history:"Заварные мини-пирожные",ingredients:["Заварное тесто","Крем"],steps:["Отсадить","Выпечь","Наполнить кремом"]},
+        samovar:{tag:"Зал2 · Экспонат",title:"Тульский самовар",img:"https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=800",history:"Символ чаепития",ingredients:[],steps:[]},
+        seledka_shuba:{tag:"Зал2 · Салат",title:"Селёдка под шубой",img:"https://images.unsplash.com/photo-1603312627492-1d6c586a3c78?w=800",history:"Слоёный праздничный салат",ingredients:["Сельдь","Свекла","Картофель","Майонез"],steps:["Выложить слоями","Дать настояться"]},
+        kholodets:{tag:"Зал2 · Закуска",title:"Холодец",img:"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800",history:"Заливное из мяса",ingredients:["Свиные ножки","Говядина","Чеснок"],steps:["Варить 6 часов","Разлить по формам"]},
+        vinaigret:{tag:"Зал2 · Салат",title:"Винегрет",img:"https://images.unsplash.com/photo-1629919615858-e0b3eade84f6?w=800",history:"Свекольный салат",ingredients:["Свекла","Картофель","Солёный огурец"],steps:["Отварить","Нарезать","Заправить маслом"]},
+        kotleta:{tag:"Зал3 · Блюдо",title:"Котлета по-киевски",img:"https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800",history:"С маслом внутри",ingredients:["Куриное филе","Масло","Панировка"],steps:["Сформировать","Обжарить во фритюре"]},
+        olivier:{tag:"Зал3 · Салат",title:"Оливье",img:"https://images.unsplash.com/photo-1512058556646-c4da40fba323?w=800",history:"Новогодний салат",ingredients:["Колбаса","Картофель","Горошек","Майонез"],steps:["Нарезать кубиками","Смешать","Заправить"]},
+        kompot:{tag:"Зал3 · Напиток",title:"Компот",img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800",history:"Из сухофруктов",ingredients:["Сухофрукты","Сахар","Вода"],steps:["Сварить","Настоять"]},
+        pechenie:{tag:"Зал3 · Десерт",title:"Печенье Юбилейное",img:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800",history:"Песочное советское",ingredients:["Мука","Масло","Сахар"],steps:["Выпечь"]},
+        podnos:{tag:"Зал3 · Предмет",title:"Алюминиевый поднос",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",history:"Советский быт",ingredients:[],steps:[]},
+        makarony_flotski:{tag:"Зал3 · Блюдо",title:"Макароны по-флотски",img:"https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=800",history:"С тушёнкой",ingredients:["Макароны","Тушёнка","Лук"],steps:["Отварить макароны","Обжарить с тушёнкой"]},
+        syrniki:{tag:"Зал3 · Десерт",title:"Сырники",img:"https://images.unsplash.com/photo-1603382082724-4805b0f43d1f?w=800",history:"Творожные оладьи",ingredients:["Творог","Яйцо","Мука"],steps:["Сформировать","Обжарить"]},
+        kompot_3:{tag:"Зал3 · Напиток",title:"Кисель клюквенный",img:"https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800",history:"Густой кисель",ingredients:["Клюква","Крахмал","Сахар"],steps:["Сварить"]},
+        vareniki:{tag:"Зал4 · Блюдо",title:"Вареники с вишней",img:"https://images.unsplash.com/photo-1590127247106-80220b5ee977?w=800",history:"Бабушкины вареники",ingredients:["Мука","Вишня","Сахар"],steps:["Замесить тесто","Сварить"]},
+        solenya:{tag:"Зал4 · Заготовка",title:"Солёные огурцы",img:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=800",history:"Хрустящие бочковые",ingredients:["Огурцы","Укроп","Чеснок"],steps:["Засолить в рассоле"]},
+        bliny_ikra:{tag:"Зал4 · Блюдо",title:"Блины с икрой",img:"https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=800",history:"Праздничные блины",ingredients:["Молоко","Яйца","Икра"],steps:["Испечь блины","Подать с икрой"]},
+        kurik:{tag:"Зал4 · Пирог",title:"Курник",img:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800",history:"Свадебный пирог",ingredients:["Курица","Блины","Рис"],steps:["Собрать пирог","Запечь"]},
+        oladi:{tag:"Зал4 · Десерт",title:"Оладьи",img:"https://images.unsplash.com/photo-1602512092541-8e031ff6cae1?w=800",history:"Пышные оладьи на кефире",ingredients:["Кефир","Мука","Сода"],steps:["Жарить","Подавать со сметаной"]},
+        bliny_2:{tag:"Зал4 · Блюдо",title:"Блины на молоке",img:"https://images.unsplash.com/photo-1519676867240-f03562e64548?w=800",history:"Кружевные тонкие",ingredients:["Молоко","Яйца","Мука"],steps:["Выпекать"]},
+        kisel_2:{tag:"Зал4 · Напиток",title:"Вишнёвый кисель",img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800",history:"Любимый кисель",ingredients:["Вишня","Крахмал","Сахар"],steps:["Сварить"]},
+        sgushenka_4:{tag:"Зал4 · Сладость",title:"Варёная сгущёнка",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",history:"Вкус детства",ingredients:["Сгущёнка"],steps:["Варить 2 часа в банке"]},
+        kakao:{tag:"Зал5 · Напиток",title:"Какао",img:"https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800",history:"С пенкой, утро",ingredients:["Молоко","Какао-порошок","Сахар"],steps:["Нагреть","Взбить"]},
+        butterbrod:{tag:"Зал5 · Блюдо",title:"Бутерброд с маслом",img:"https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800",history:"Быстрый завтрак",ingredients:["Хлеб","Масло"],steps:["Намазать масло"]},
+        ovs_kasha:{tag:"Зал5 · Каша",title:"Овсяная каша",img:"https://images.unsplash.com/photo-1606851091851-e8c8c0fca5ba?w=800",history:"Сытная каша",ingredients:["Овсянка","Молоко"],steps:["Сварить","Добавить масло"]},
+        ovs_pechenie:{tag:"Зал5 · Десерт",title:"Овсяное печенье",img:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800",history:"Домашнее печенье",ingredients:["Овсянка","Сахар","Масло"],steps:["Выпечь"]},
+        gercules:{tag:"Зал5 · Каша",title:"Геркулес",img:"https://images.unsplash.com/photo-1515705576963-95b71c06d5c7?w=800",history:"С ягодами",ingredients:["Хлопья","Ягоды","Мёд"],steps:["Заварить"]},
+        bulochka:{tag:"Зал5 · Выпечка",title:"Сдобная булочка",img:"https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800",history:"Школьная булочка",ingredients:["Дрожжевое тесто","Мак"],steps:["Выпечь"]},
+        moloko:{tag:"Зал5 · Напиток",title:"Тёплое молоко",img:"https://images.unsplash.com/photo-1563636619-e9143da7973b?w=800",history:"Перед сном",ingredients:["Молоко","Мёд"],steps:["Подогреть"]},
+        sgushenka:{tag:"Зал5 · Сладость",title:"Сгущёнка",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",history:"Сладкое поощрение",ingredients:["Сгущёнка"],steps:["Открыть и наслаждаться"]}
+    };
+
+    // структура залов (вертикальная)
+    const hallsData = [
+        { name:"Зал 1 · Русская печь", items:["shchi","kasha","rastegaс","kisel","kalach","sbiten","perepelacha","medovukha"], panorama:"photos/IMG_20260427_214718_720.jpg", textPan:"🔥 Жар русской печи согревал весь дом. Щи томились сутки, гречневая каша в чугунках, пряный сбитень спасал от стужи." },
+        { name:"Зал 2 · Имперский пир", items:["beefstroganoff","pirozhok_osetr","kulebyaka","ptifur","samovar","seledka_shuba","kholodets","vinaigret"], panorama:"photos/IMG_20260427_214720_960.jpg", textPan:"🥂 Хрусталь, серебро и многослойные кулебяки. Бефстроганов для графа, осетрина для императора." },
+        { name:"Зал 3 · Советская столовая", items:["kotleta","olivier","kompot","pechenie","podnos","makarony_flotski","syrniki","kompot_3"], panorama:"photos/IMG_20260427_214722_982.jpg", textPan:"🍴 Очередь за котлетой и стакан компота. Оливье под майонезом, сырники, макароны по-флотски." },
+        { name:"Зал 4 · У бабушки на кухне", items:["vareniki","solenya","bliny_ikra","kurik","oladi","bliny_2","kisel_2","sgushenka_4"], panorama:"photos/IMG_20260427_214725_873.jpg", textPan:"👵 Вареники лепятся всей семьёй, солёные огурцы из погреба. Бабушкины блины с икрой, курник." },
+        { name:"Зал 5 · Утро перед детским садом", items:["kakao","butterbrod","ovs_kasha","ovs_pechenie","gercules","bulochka","moloko","sgushenka"], panorama:"photos/IMG_20260427_213125_388.jpg", textPan:"🧸 Какао с пенкой, масляный бутерброд, овсяная каша «Геркулес», сдобная булочка, сгущёнка." }
+    ];
+    // глобальный контроль аудио
+    let globalAudio = null;
+    let currentVinylElem = null;
+
+    function stopCurrentAudio() {
+        if(globalAudio) {
+            globalAudio.pause();
+            globalAudio = null;
+        }
+        if(currentVinylElem) {
+            currentVinylElem.classList.remove("spinning");
+            currentVinylElem = null;
+        }
+    }
+
+    function buildVerticalHalls() {
+        const container = document.getElementById("hallsStack");
+        container.innerHTML = "";
+        hallsData.forEach((hall, idx) => {
+            const card = document.createElement("div");
+            card.className = "hall-card";
+            const panoramaDiv = document.createElement("div");
+            panoramaDiv.className = "hall-panorama";
+            panoramaDiv.style.backgroundImage = `url(${hall.panorama})`;
+            const textSpan = document.createElement("div");
+            textSpan.className = "panorama-text";
+            textSpan.innerText = hall.textPan;
+            panoramaDiv.appendChild(textSpan);
+            const vinyl = document.createElement("div");
+            vinyl.className = "vinyl-player";
+            panoramaDiv.appendChild(vinyl);
+            const titleDiv = document.createElement("div");
+            titleDiv.className = "hall-title";
+            titleDiv.innerText = hall.name;
+            const carouselBlock = document.createElement("div");
+            carouselBlock.className = "carousel-block";
+            carouselBlock.innerHTML = `<div class="carousel-label">🍽️ Нажмите на карточку — откроется рецепт</div><div class="track-outer" id="trackOuter${idx}"><div class="cards-track" id="track${idx}"></div></div><div class="carousel-nav"><button class="c-arrow prevBtn" data-idx="${idx}">←</button><span class="c-counter" id="counter${idx}">1/1</span><button class="c-arrow nextBtn" data-idx="${idx}">→</button></div>`;
+            card.appendChild(panoramaDiv);
+            card.appendChild(titleDiv);
+            card.appendChild(carouselBlock);
+            container.appendChild(card);
+
+            const trackDiv = document.getElementById(`track${idx}`);
+            hall.items.forEach(key => {
+                let exKey = key;
+                if(key === "rastegaс") exKey = "rastegaс"; // исправляем опечатку ключа
+                const ex = exhibitsDB[exKey];
+                if(ex) {
+                    const cardEx = document.createElement("div");
+                    cardEx.className = "expo-card";
+                    cardEx.setAttribute("data-key", exKey);
+                    cardEx.innerHTML = `<img class="expo-img" src="${ex.img}" alt="${ex.title}"><div class="expo-info"><div class="expo-name">${ex.title}</div><div class="expo-type">${ex.tag || "Экспонат"}</div></div>`;
+                    cardEx.onclick = (e) => { e.stopPropagation(); openModal(exKey); };
+                    trackDiv.appendChild(cardEx);
+                }
+            });
+            initCarouselScroll(idx);
+            // аудио для пластинки
+            const audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3");
+            audio.loop = true;
+            vinyl.addEventListener("click", (e) => {
+                e.stopPropagation();
+                if(globalAudio === audio && currentVinylElem === vinyl && !audio.paused) {
+                    stopCurrentAudio();
+                } else {
+                    stopCurrentAudio();
+                    globalAudio = audio;
+                    currentVinylElem = vinyl;
+                    audio.play().catch(err => console.log("автовоспроизведение заблокировано"));
+                    vinyl.classList.add("spinning");
+                }
+            });
+            audio.addEventListener("ended", () => {
+                if(globalAudio === audio) {
+                    vinyl.classList.remove("spinning");
+                    globalAudio = null;
+                    currentVinylElem = null;
+                }
+            });
+        });
+    }
+
+    function initCarouselScroll(idx) {
+        const outer = document.getElementById(`trackOuter${idx}`);
+        const track = document.getElementById(`track${idx}`);
+        if(!outer || !track) return;
+        const cards = track.querySelectorAll('.expo-card');
+        const total = cards.length;
+        if(total === 0) return;
+        const updateCounter = () => {
+            const scrollLeft = outer.scrollLeft;
+            let cardWidth = 220 + 20; // ширина + gap
+            if(window.innerWidth <= 700) cardWidth = 180 + 20;
+            const activeIndex = Math.round(scrollLeft / cardWidth);
+            const safeIdx = Math.min(Math.max(activeIndex,0), total-1);
+            document.getElementById(`counter${idx}`).innerText = `${safeIdx+1}/${total}`;
+        };
+        const scrollToIndex = (index) => {
+            let cardWidth = 220 + 20;
+            if(window.innerWidth <= 700) cardWidth = 180 + 20;
+            const newLeft = index * cardWidth;
+            outer.scrollTo({ left: newLeft, behavior: 'smooth' });
+            setTimeout(updateCounter, 150);
+        };
+        let currentIdx = 0;
+        const next = () => { currentIdx = (currentIdx + 1) % total; scrollToIndex(currentIdx); };
+        const prev = () => { currentIdx = (currentIdx - 1 + total) % total; scrollToIndex(currentIdx); };
+        const prevBtn = document.querySelector(`.prevBtn[data-idx="${idx}"]`);
+        const nextBtn = document.querySelector(`.nextBtn[data-idx="${idx}"]`);
+        if(prevBtn) prevBtn.onclick = () => prev();
+        if(nextBtn) nextBtn.onclick = () => next();
+        outer.addEventListener("scroll", updateCounter);
+        updateCounter();
+    }
+
+    // модалка, рецепты, сохранения
+    let currentModalKey = null;
+    function openModal(key) {
+        const ex = exhibitsDB[key];
+        if(!ex) return;
+        currentModalKey = key;
+        document.getElementById("modalImg").src = ex.img;
+        document.getElementById("modalTag").innerText = ex.tag || "Экспонат";
+        document.getElementById("modalTitle").innerText = ex.title;
+        document.getElementById("modalHistory").innerText = ex.history || "Кулинарная легенда.";
+        const panel = document.getElementById("recipePanel");
+        const inner = document.getElementById("recipeInner");
+        if(ex.ingredients && ex.ingredients.length) {
+            inner.innerHTML = `<h4>🥄 Ингредиенты:</h4><ul>${ex.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul><h4>🍳 Приготовление:</h4><ol>${ex.steps.map(s=>`<li>${s}</li>`).join('')}</ol>`;
+            document.getElementById("recipeToggleBtn").style.display = "inline-flex";
+        } else {
+            inner.innerHTML = "<p>Нет рецепта, но вы можете сохранить память.</p>";
+            document.getElementById("recipeToggleBtn").style.display = "none";
+        }
+        panel.classList.remove("open");
+        document.getElementById("modalBg").classList.add("open");
+    }
+    window.closeModal = () => document.getElementById("modalBg").classList.remove("open");
+    document.getElementById("modalBg").addEventListener("click", e => { if(e.target === document.getElementById("modalBg")) closeModal(); });
+    document.getElementById("recipeToggleBtn").addEventListener("click", () => {
+        document.getElementById("recipePanel").classList.toggle("open");
+    });
+
+    let savedRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+    function renderRecipeBook() {
+        const grid = document.getElementById("recipesGrid");
+        if(savedRecipes.length === 0) {
+            grid.innerHTML = '<div class="empty-recipes-msg">✨ Пока нет рецептов. Сохраните из карточек экспозиции или добавьте свой!</div>';
+            return;
+        }
+        grid.innerHTML = savedRecipes.map((r, idx) => `
+            <div class="recipe-card" data-recipe-idx="${idx}">
+                <img class="recipe-img" src="${r.img || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400'}" alt="${r.title}">
+                <button class="delete-recipe" data-id="${r.id || idx}" title="Удалить рецепт">🗑️</button>
+                <div class="recipe-info">
+                    <div class="recipe-title">${escapeHtml(r.title)}</div>
+                    <span class="recipe-tag">${escapeHtml(r.tag)}</span>
+                    <div style="font-size:0.75rem; margin-top:0.5rem; color:#5a3e2a;"><strong>Ингредиенты:</strong> ${escapeHtml(r.ingredients).substring(0,60)}${r.ingredients.length>60?'…':''}</div>
+                </div>
+            </div>
+        `).join('');
+        // привязать удаление
+        document.querySelectorAll('.delete-recipe').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const recipeDiv = btn.closest('.recipe-card');
+                const idxAttr = recipeDiv.getAttribute('data-recipe-idx');
+                if(idxAttr !== null && confirm('Удалить рецепт из книги?')) {
+                    const idxNum = parseInt(idxAttr,10);
+                    savedRecipes.splice(idxNum, 1);
+                    localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+                    renderRecipeBook();
+                }
+            });
+        });
+    }
+    function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;});}
+    function saveCurrentToBook() {
+        if(!currentModalKey) return;
+        const ex = exhibitsDB[currentModalKey];
+        if(!ex) return;
+        const newRec = { id:Date.now(), title:ex.title, tag:ex.tag, ingredients:ex.ingredients?.join("\n")||"", steps:ex.steps?.join("\n")||"", img:ex.img };
+        if(!savedRecipes.some(r=>r.title === newRec.title && r.ingredients === newRec.ingredients)) {
+            savedRecipes.push(newRec);
+            localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+            alert("✅ Рецепт сохранён в книгу!");
+            renderRecipeBook();
+        } else alert("Этот рецепт уже есть в книге");
+    }
+    document.getElementById("saveRecipeModalBtn").addEventListener("click", saveCurrentToBook);
+    document.getElementById("addCustomRecipeBtn").addEventListener("click", () => {
+        const title = document.getElementById("newTitle").value.trim();
+        if(!title) return alert("Введите название блюда");
+        const newR = { id:Date.now(), title, tag:document.getElementById("newTag").value, ingredients:document.getElementById("newIngredients").value, steps:document.getElementById("newSteps").value, img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400" };
+        savedRecipes.push(newR);
+        localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+        renderRecipeBook();
+        alert("Рецепт добавлен!");
+        document.getElementById("newTitle").value = "";
+        document.getElementById("newIngredients").value = "";
+        document.getElementById("newSteps").value = "";
+    });
+
+    function showMain() {
+        document.getElementById("mainPage").style.display = "block";
+        document.getElementById("recipesPage").classList.remove("active");
+        document.getElementById("mainTabBtn").classList.add("active");
+        document.getElementById("recipesTabBtn").classList.remove("active");
+    }
+    function showRecipes() {
+        document.getElementById("mainPage").style.display = "none";
+        document.getElementById("recipesPage").classList.add("active");
+        renderRecipeBook();
+        document.getElementById("mainTabBtn").classList.remove("active");
+        document.getElementById("recipesTabBtn").classList.add("active");
+    }
+    document.getElementById("mainTabBtn").onclick = showMain;
+    document.getElementById("recipesTabBtn").onclick = showRecipes;
+
+    buildVerticalHalls();
+    showMain();
+</script>
+</body>
+</html>

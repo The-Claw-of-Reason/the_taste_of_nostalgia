@@ -213,19 +213,37 @@
             border-radius: 50%;
         }
 
+        /* Мобильная версия: логотип сверху, текст под ним */
         @media (max-width: 780px) {
             .hero-overlay {
                 flex-direction: column;
                 justify-content: center;
+                align-items: center;
+                gap: 1rem;
                 text-align: center;
+                padding: 0 5%;
             }
             .hero-text {
                 text-align: center;
+                order: 2;
+                width: 100%;
             }
             .hero-logo {
-                width: 140px;
-                height: 140px;
-                margin-top: 1rem;
+                order: 1;
+                width: 160px;
+                height: 160px;
+                margin-top: 0;
+                margin-bottom: 0.5rem;
+            }
+            .hero-main-title {
+                font-size: clamp(1.8rem, 6vw, 2.8rem);
+            }
+            .hero-subtitle {
+                font-size: clamp(0.9rem, 4vw, 1.4rem);
+            }
+            .hero-description {
+                font-size: 0.8rem;
+                padding-top: 0.5rem;
             }
         }
 
@@ -317,7 +335,7 @@
             height: 550px;
             box-shadow: inset 0 0 0 1px rgba(230,200,122,0.2);
             cursor: ns-resize;
-            touch-action: pan-x pan-y; /* разрешаем горизонтальный скролл, но вертикальный будем перехватывать */
+            touch-action: pan-x pan-y;
         }
 
         .panorama-image-wrapper {
@@ -499,7 +517,7 @@
             color: #6B4F33;
         }
 
-        /* Мобильные улучшения */
+        /* Мобильные улучшения панорам и каруселей */
         @media (max-width: 700px) {
             .hall-panorama { height: 400px; }
             .panorama-text { font-size: 0.7rem; padding: 0.5rem 1.2rem; max-width: 70%; min-width: 160px; bottom: 16px; left: 16px; }
@@ -523,7 +541,6 @@
             .panorama-text { font-size: 0.65rem; padding: 0.4rem 0.9rem; max-width: 80%; min-width: 130px; bottom: 12px; left: 12px; }
             .vinyl-player { width: 90px; height: 90px; bottom: -8px; right: 8px; }
             .hero-description { font-size: 0.75rem; }
-            .hero-main-title { font-size: clamp(1.8rem, 8vw, 3rem); }
             .c-arrow { width: 38px; height: 38px; }
             .carousel-label { font-size: 0.6rem; }
         }
@@ -870,7 +887,7 @@
         { name: "Зал 5 · Утро перед детским садом", items: ["hall5_kakao","hall5_butterbrod","hall5_ovsyanka","hall5_grenki","hall5_sgushenka","hall5_zefir","hall5_oreshki","hall5_zapekanka_tvorog"], imgSrc: "photos/IMG_20260427_213125_388.jpg", textPan: "Какао с пенкой, овсяная каша, сгущёнка и орешки — лучшее поощрение.", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }
     ];
 
-    // Универсальное управление панорамой: колёсико + тач-события (для мобильных)
+    // Универсальное управление панорамой: колесо + тач
     function setupPanoramaControls(panoramaElement, imgElement) {
         let translateY = 0, maxTranslate = 0;
         let targetTranslate = 0;
@@ -904,7 +921,6 @@
             if (clamped !== targetTranslate) { targetTranslate = clamped; smoothScroll(); }
         };
         
-        // wheel-событие (мышь / тачпад)
         const onWheel = (e) => {
             if (maxTranslate <= 0) return;
             e.preventDefault();
@@ -912,7 +928,6 @@
             setTarget(targetTranslate - delta);
         };
         
-        // touch-события для пальца
         const onTouchStart = (e) => {
             if (maxTranslate <= 0) return;
             e.preventDefault();
@@ -930,13 +945,10 @@
             setTarget(newTranslate);
         };
         
-        const onTouchEnd = (e) => { /* ничего, движение уже закоммичено */ };
-        
         const wrapper = panoramaElement.querySelector('.panorama-image-wrapper') || panoramaElement;
         wrapper.addEventListener('wheel', onWheel, { passive: false });
         wrapper.addEventListener('touchstart', onTouchStart, { passive: false });
         wrapper.addEventListener('touchmove', onTouchMove, { passive: false });
-        wrapper.addEventListener('touchend', onTouchEnd);
         
         window.addEventListener('resize', () => { updateLimits(); setTarget(targetTranslate); });
         imgElement.addEventListener('load', updateLimits);

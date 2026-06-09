@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Культурный код России — Панорамы с ручной прокруткой</title>
+    <title>Культурный код России — Уникальные пластинки для каждого зала</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
@@ -45,7 +45,6 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #EEDDBB;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -215,7 +214,6 @@
             border-radius: 50%;
         }
 
-        /* Мобильная версия: большой логотип сверху, под ним текст */
         @media (max-width: 780px) {
             .hero {
                 min-height: 480px;
@@ -379,7 +377,6 @@
             transform: translateY(0);
         }
 
-        /* Текст внутри панорамы (только для десктопа) */
         .panorama-text {
             position: absolute;
             bottom: 28px;
@@ -402,7 +399,6 @@
             margin-bottom: 0.25rem;
         }
 
-        /* Мобильный текстовый блок — аккуратная карточка после панорамы */
         .mobile-hall-text {
             margin: 1rem 1.2rem 0.5rem 1.2rem;
             padding: 1rem 1.2rem;
@@ -425,13 +421,13 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
         .vinyl-player {
             position: absolute;
-            bottom: -20px;
+            bottom: 20px;
             right: 30px;
             width: 160px;
             height: 160px;
-            background-image: url('https://avatars.mds.yandex.net/get-mpic/16778995/2a00000198c2a5558f14c966abdc48c7c859/orig');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -561,7 +557,6 @@
             color: #6B4F33;
         }
 
-        /* Мобильные стили: панорама становится просто картинкой, текст вынесен в отдельный блок с рамкой */
         @media (max-width: 700px) {
             .hall-panorama {
                 height: auto;
@@ -580,7 +575,6 @@
                 transition: none;
                 pointer-events: auto;
             }
-            /* Скрываем встроенный текст (который был внутри панорамы) */
             .hall-panorama .panorama-text {
                 display: none;
             }
@@ -935,8 +929,8 @@
         hall1_rastega: { tag: "Зал1 · Выпечка", title: "Расстегай с рыбой", img: "photos/1/11 (2).png", history: "Открытый пирожок из дрожжевого теста с начинкой из рыбы, риса и зелени. Популярен в московских трактирах.", ingredients: ["Мука — 500 г", "Дрожжи — 10 г", "Филе рыбы — 300 г", "Рис — 50 г", "Лук репчатый — 1 шт."], steps: ["Замесить дрожжевое тесто", "Приготовить начинку: рыбу отварить, смешать с отварным рисом и пассерованным луком", "Сформировать расстегаи, оставив отверстие", "Выпекать при 200°C 25 минут"] },
         hall1_kisel: { tag: "Зал1 · Напиток", title: "Овсяный кисель", img: "photos/1/unnamed (5).png", history: "Густой, сытный кисель на овсяной основе. Традиционный русский десерт и лекарство от желудочных недугов.", ingredients: ["Овсяные хлопья — 200 г", "Вода — 1 л", "Мёд — 2 ст. ложки"], steps: ["Залить овсянку водой, оставить на ночь", "Процедить, варить на медленном огне до загустения", "Добавить мёд, подавать тёплым"] },
         hall1_kalach: { tag: "Зал1 · Керамика", title: "Калач московский", img: "photos/1/unnamed (4).png", history: "Пышный сдобный калач из пшеничной муки. Форма с ручкой — чтобы есть, держа за дужку (её потом выбрасывали).", ingredients: ["Мука — 600 г", "Молоко — 200 мл", "Яйца — 2 шт.", "Сахар — 80 г", "Дрожжи — 15 г"], steps: ["Замесить сдобное тесто", "Дать подняться дважды", "Сформировать калачи", "Выпекать 30 минут при 180°C"] },
-        hall1_sbiten: { tag: "Зал1 · Керамика", title: "Медовый сбитень", img: "photos/1/unnamed (2).png", history: "Пряный согревающий напиток на меду и травах. Пили на ярмарках вместо чая.", ingredients: ["Мёд — 150 г", "Вода — 1 л", "Имбирь, корица, гвоздика — по вкусу"], steps: ["Вскипятить воду с пряностями", "Добавить мёд, размешать до растворения", "Настоять 10 минут, подавать горячим"] },
-        hall1_bliny: { tag: "Зал1 · Керамика", title: "Русские блины", img: "photos/1/unnamed (3).png", history: "Тонкие, кружевные блины на масленицу. Пеклись из гречневой или пшеничной муки.", ingredients: ["Мука — 300 г", "Молоко — 500 мл", "Яйца — 2 шт.", "Масло растительное — 2 ст. ложки"], steps: ["Яйца взбить с солью и сахаром", "Добавить молоко, муку, замесить жидкое тесто", "Выпекать на раскалённой сковороде"] },
+        hall1_sbiten: { tag: "Зал1 · Керамика", title: "------", img: "photos/1/unnamed (2).png", history: "", ingredients: ["у"], steps: [""] },
+        hall1_bliny: { tag: "Зал1 · Керамика", title: "Блины", img: "photos/1/unnamed (3).png", history: "Тонкие, кружевные блины на масленицу. Пеклись из гречневой или пшеничной муки.", ingredients: ["Мука — 300 г", "Молоко — 500 мл", "Яйца — 2 шт.", "Масло растительное — 2 ст. ложки"], steps: ["Яйца взбить с солью и сахаром", "Добавить молоко, муку, замесить жидкое тесто", "Выпекать на раскалённой сковороде"] },
         hall1_ryba: { tag: "Зал1 · Керамика", title: "Рыба в чугунке", img: "photos/1/unnamed (1).png", history: "Запечённая в чугунке речная рыба с луком и зеленью. Простое крестьянское блюдо.", ingredients: ["Рыба — 1 кг", "Лук — 2 шт.", "Сметана — 100 г"], steps: ["Рыбу очистить, нарезать кусками", "В чугунок выложить рыбу, лук, сметану", "Томить в духовке 40 минут"] },
         hall2_beefstroganoff: { tag: "Зал2 · Блюдо", title: "Бефстроганов", img: "photos/2/21 (1).png", history: "Мясо в сметанном соусе, придуманное поваром графа Строганова. Символ императорской кухни XIX века.", ingredients: ["Говядина — 600 г", "Сметана — 200 г", "Лук — 1 шт.", "Мука — 1 ст. ложка"], steps: ["Нарезать мясо тонкими брусочками", "Обжарить с луком, добавить муку", "Влить сметану, тушить 15 минут"] },
         hall2_pirozhok_osetr: { tag: "Зал2 · Выпечка", title: "Пирожок с осетриной", img: "photos/2/21 (3).png", history: "Императорская выпечка из слоёного теста с осетриной и рисом. Украшала царские банкеты.", ingredients: ["Слоёное тесто — 500 г", "Осетрина — 300 г", "Рис — 50 г", "Яйцо для смазки"], steps: ["Рис отварить, осетрину припустить", "Нарезать тесто, выложить начинку", "Сформировать пирожки, выпекать 20 минут"] },
@@ -956,7 +950,7 @@
         hall3_pirozhok_povidlo: { tag: "Зал3 · Керамика", title: "Пирожок с повидлом", img: "photos/3/32 (3).png", history: "Сладкий пирожок из печёного теста с яблочным повидлом. Школьная выпечка.", ingredients: ["Тесто — 500 г", "Повидло — 200 г"], steps: ["Разделить тесто на шарики, раскатать", "Положить повидло, защипать", "Выпекать 25 минут"] },
         hall4_vareniki: { tag: "Зал4 · Блюдо", title: "Вареники с вишней", img: "photos/4/4 (1).png", history: "Бабушкины вареники с вишней. Подаются со сметаной и сахаром.", ingredients: ["Мука — 400 г", "Вишня — 300 г", "Сахар — 100 г"], steps: ["Замесить тесто на воде", "Раскатать, вырезать круги", "Положить вишню с сахаром, сварить"] },
         hall4_mors: { tag: "Зал4 · Блюдо", title: "Клюквенный морс", img:"photos/4/4 (2).png", history: "Ягодный напиток из клюквы с мёдом. Освежал в жару и лечил простуду.", ingredients: ["Клюква — 300 г", "Вода — 1,5 л", "Мёд — 3 ст. ложки"], steps: ["Размять клюкву, отжать сок", "Мезгу проварить, процедить", "Смешать с соком и мёдом"] },
-        hall4_solenya: { tag: "Зал4 · Блюдо", title: "Бочковые огурцы", img:"photos/4/4 (3).png", history: "Хрустящие солёные огурцы в дубовой бочке. Заготовка на зиму.", ingredients: ["Огурцы — 2 кг", "Чеснок — 4 зуб.", "Укроп, хрен, соль"], steps: ["Замочить огурцы в холодной воде", "Уложить в банку со специями", "Залить рассолом, закрыть"] },
+        hall4_solenya: { tag: "Зал4 · Блюдо", title: "Соленья", img:"photos/4/4 (3).png", history: "Хрустящие солёные огурцы в дубовой бочке. Заготовка на зиму.", ingredients: ["Огурцы — 2 кг", "Чеснок — 4 зуб.", "Укроп, хрен, соль"], steps: ["Замочить огурцы в холодной воде", "Уложить в банку со специями", "Залить рассолом, закрыть"] },
         hall4_oladi: { tag: "Зал4 · Блюдо", title: "Оладьи на кефире", img:"photos/4/4 (4).png", history: "Пышные оладьи на кефире. Бабушкин завтрак с вареньем.", ingredients: ["Кефир — 500 мл", "Мука — 300 г", "Яйцо — 1 шт.", "Сода — 1 ч.л."], steps: ["Смешать кефир, яйцо, муку, соду", "Жарить на сковороде", "Подавать со сметаной"] },
         hall4_sharlotka: { tag: "Зал4 · Керамика", title: "Шарлотка", img: "photos/4/42 (4).png", history: "Яблочная шарлотка — быстрый пирог из бисквита. Любили печь к чаю.", ingredients: ["Яблоки — 4 шт.", "Яйца — 3 шт.", "Сахар — 1 стакан", "Мука — 1 стакан"], steps: ["Яйца взбить с сахаром", "Добавить муку, перемешать", "Вылить на яблоки, выпекать 30 минут"] },
         hall4_kholodets: { tag: "Зал4 · Керамика", title: "Холодец", img: "photos/4/42 (3).png", history: "Заливное из свиных ножек и говядины. Праздничное блюдо для семейного застолья.", ingredients: ["Свиные ножки — 2 шт.", "Говядина — 500 г", "Морковь, лук, чеснок"], steps: ["Опалить ножки, замочить", "Варить 6 часов с овощами", "Разобрать мясо, залить бульоном"] },
@@ -972,12 +966,21 @@
         hall5_zapekanka_tvorog: { tag: "Зал5 · Керамика", title: "Творожная запеканка", img: "photos/5/52 (3).png", history: "Как в детском саду — творожная запеканка с изюмом и сметаной.", ingredients: ["Творог — 500 г", "Яйца — 2 шт.", "Манка — 3 ст.л.", "Сахар — 100 г"], steps: ["Протереть творог, смешать с яйцами, манкой, сахаром", "Выложить в форму, выпекать 35 минут"] }
     };
 
+    // Уникальные изображения для пластинок (SVG-диски с разными цветами и подписью)
+    const vinylImages = [
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='98' fill='%23222' stroke='%23C4A57B' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%23555' stroke-width='4' stroke-dasharray='8 6'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23777' stroke-width='3'/%3E%3Ccircle cx='100' cy='100' r='25' fill='%23B22222' stroke='%23E6C87A' stroke-width='2'/%3E%3Ctext x='100' y='106' font-size='12' fill='%23FFE0B3' text-anchor='middle' font-family='monospace'%3EЗАЛ 1%3C/text%3E%3C/svg%3E",
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='98' fill='%231a1f2e' stroke='%23C4A57B' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%234a5168' stroke-width='4' stroke-dasharray='8 6'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23657a9e' stroke-width='3'/%3E%3Ccircle cx='100' cy='100' r='25' fill='%23316B72' stroke='%23E6C87A' stroke-width='2'/%3E%3Ctext x='100' y='106' font-size='12' fill='%23FFE0B3' text-anchor='middle' font-family='monospace'%3EЗАЛ 2%3C/text%3E%3C/svg%3E",
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='98' fill='%232b2b1f' stroke='%23C4A57B' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%236c6b3d' stroke-width='4' stroke-dasharray='8 6'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23958c4a' stroke-width='3'/%3E%3Ccircle cx='100' cy='100' r='25' fill='%238B6B2D' stroke='%23E6C87A' stroke-width='2'/%3E%3Ctext x='100' y='106' font-size='12' fill='%23FFE0B3' text-anchor='middle' font-family='monospace'%3EЗАЛ 3%3C/text%3E%3C/svg%3E",
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='98' fill='%23233a27' stroke='%23C4A57B' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%234d805b' stroke-width='4' stroke-dasharray='8 6'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%2369a677' stroke-width='3'/%3E%3Ccircle cx='100' cy='100' r='25' fill='%2394524C' stroke='%23E6C87A' stroke-width='2'/%3E%3Ctext x='100' y='106' font-size='12' fill='%23FFE0B3' text-anchor='middle' font-family='monospace'%3EЗАЛ 4%3C/text%3E%3C/svg%3E",
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='98' fill='%233a1e33' stroke='%23C4A57B' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%23844e73' stroke-width='4' stroke-dasharray='8 6'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23b46d9c' stroke-width='3'/%3E%3Ccircle cx='100' cy='100' r='25' fill='%23A55670' stroke='%23E6C87A' stroke-width='2'/%3E%3Ctext x='100' y='106' font-size='12' fill='%23FFE0B3' text-anchor='middle' font-family='monospace'%3EЗАЛ 5%3C/text%3E%3C/svg%3E"
+    ];
+
     const hallsData = [
-        { name: "Зал 1 · Русская печь", items: ["hall1_shchi","hall1_kalach","hall1_kasha","hall1_sbiten","hall1_rastega","hall1_kisel","hall1_bliny","hall1_ryba"], imgSrc: "photos/IMG_20260427_214718_720.jpg", textPan: "Жаркое дыхание русской печи помнит вековые традиции: здесь щи томились долгими часами, гречневая каша таяла с маслом, а пряный сбитень согревал в стужу. Блины и калачи — душа домашнего застолья, где каждый кусочек хранит тепло прошлого.", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-        { name: "Зал 2 · Имперский пир", items: ["hall2_beefstroganoff","hall2_pirozhok_osetr","hall2_kulebyaka","hall2_ptifur","hall2_kurnik","hall2_zalivnoe","hall2_kulebyaka2","hall2_rasstegai"], imgSrc: "photos/IMG_20260427_214720_960.jpg", textPan: "Хрусталь, серебро, многослойные кулебяки. Бефстроганов для графа. Осетрина для балов. Чай с малиновым вареньем из самовара.", audioSrc: "audio/Luidzhi_Bokkerini_-_Menujet_76518024.mp3" },
-        { name: "Зал 3 · Советская столовая", items: ["hall3_kotleta","hall3_olivier","hall3_kompot","hall3_pechenie","hall3_makarony","hall3_pelmeni","hall3_sosiski","hall3_pirozhok_povidlo"], imgSrc: "photos/IMG_20260427_214722_982.jpg", textPan: "Очередь за котлетой, стакан компота. Оливье под майонезом. Сосиски в тесте — вкус эпохи.", audioSrc: "audio/Aleksandr_Zacepin_-_Na_Strojjke_Operaciya_Y_61248537.mp3" },
-        { name: "Зал 4 · У бабушки на кухне", items: ["hall4_vareniki","hall4_mors","hall4_solenya","hall4_oladi","hall4_sharlotka","hall4_kholodets","hall4_zapekanka","hall4_buzhenina"], imgSrc: "photos/IMG_20260427_214725_873.jpg", textPan: "Вареники лепят всей семьёй. Хрустящие соленья из погреба. Шарлотка и буженина — тепло бабушкиных рук.", audioSrc: "audio/бабушка.MP3" },
-        { name: "Зал 5 · Утро перед детским садом", items: ["hall5_kakao","hall5_butterbrod","hall5_ovsyanka","hall5_grenki","hall5_sgushenka","hall5_zefir","hall5_oreshki","hall5_zapekanka_tvorog"], imgSrc: "photos/IMG_20260427_213125_388.jpg", textPan: "Какао с пенкой, овсяная каша, сгущёнка и орешки — лучшее поощрение.", audioSrc: "audio/Aleksejj_Rybnikov_-_Usatyjj_nyan_Titry_73399744.mp3" }
+        { name: "Зал 1 · Русская печь", items: ["hall1_shchi","hall1_kalach","hall1_kasha","hall1_sbiten","hall1_rastega","hall1_kisel","hall1_bliny","hall1_ryba"], imgSrc: "photos/IMG_20260427_214718_720.jpg", textPan: "Жаркое дыхание русской печи помнит вековые традиции: здесь щи томились долгими часами, гречневая каша таяла с маслом, а пряный сбитень согревал в стужу. Блины и калачи — душа домашнего застолья, где каждый кусочек хранит тепло прошлого.", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", vinylImg: vinylImages[0] },
+        { name: "Зал 2 · Имперский пир", items: ["hall2_beefstroganoff","hall2_pirozhok_osetr","hall2_kulebyaka","hall2_ptifur","hall2_kurnik","hall2_zalivnoe","hall2_kulebyaka2","hall2_rasstegai"], imgSrc: "photos/IMG_20260427_214720_960.jpg", textPan: "Хрусталь, серебро, многослойные кулебяки. Бефстроганов для графа. Осетрина для балов. Чай с малиновым вареньем из самовара.", audioSrc: "audio/Luidzhi_Bokkerini_-_Menujet_76518024.mp3", vinylImg: vinylImages[1] },
+        { name: "Зал 3 · Советская столовая", items: ["hall3_kotleta","hall3_olivier","hall3_kompot","hall3_pechenie","hall3_makarony","hall3_pelmeni","hall3_sosiski","hall3_pirozhok_povidlo"], imgSrc: "photos/IMG_20260427_214722_982.jpg", textPan: "Очередь за котлетой, стакан компота. Оливье под майонезом. Сосиски в тесте — вкус эпохи.", audioSrc: "audio/Aleksandr_Zacepin_-_Na_Strojjke_Operaciya_Y_61248537.mp3", vinylImg: vinylImages[2] },
+        { name: "Зал 4 · У бабушки на кухне", items: ["hall4_vareniki","hall4_mors","hall4_solenya","hall4_oladi","hall4_sharlotka","hall4_kholodets","hall4_zapekanka","hall4_buzhenina"], imgSrc: "photos/IMG_20260427_214725_873.jpg", textPan: "Вареники лепят всей семьёй. Хрустящие соленья из погреба. Шарлотка и буженина — тепло бабушкиных рук.", audioSrc: "audio/бабушка.MP3", vinylImg: vinylImages[3] },
+        { name: "Зал 5 · Утро перед детским садом", items: ["hall5_kakao","hall5_butterbrod","hall5_ovsyanka","hall5_grenki","hall5_sgushenka","hall5_zefir","hall5_oreshki","hall5_zapekanka_tvorog"], imgSrc: "photos/IMG_20260427_213125_388.jpg", textPan: "Какао с пенкой, овсяная каша, сгущёнка и орешки — лучшее поощрение.", audioSrc: "audio/Aleksejj_Rybnikov_-_Usatyjj_nyan_Titry_73399744.mp3", vinylImg: vinylImages[4] }
     ];
 
     // Для десктопа: панорама с трансформацией (мышь/колесо)
@@ -1077,11 +1080,12 @@
             img.onerror = () => { img.src = "https://placehold.co/1600x1000?text=Панорама+зала"; };
             imageWrapper.appendChild(img); panoramaDiv.appendChild(imageWrapper);
             
-            // Текстовое описание (внутреннее для десктопа)
             const textSpan = document.createElement("div"); textSpan.className = "panorama-text";
             textSpan.innerHTML = hall.textPan.split(/[.!?] /).filter(s=>s.trim()).map(s=>`<p>${s.trim()}.</p>`).join('');
             
             const vinylDiv = document.createElement("div"); vinylDiv.className = "vinyl-player";
+            // НАЗНАЧАЕМ УНИКАЛЬНОЕ ИЗОБРАЖЕНИЕ ДЛЯ ПЛАСТИНКИ
+            vinylDiv.style.backgroundImage = `url(${hall.vinylImg})`;
             panoramaDiv.appendChild(vinylDiv);
             
             if (!isMobile) {
@@ -1089,7 +1093,6 @@
             }
             card.appendChild(panoramaDiv);
             
-            // Для мобильной версии добавляем отдельный блок текста с аккуратной рамкой
             if (isMobile) {
                 const mobileTextBlock = document.createElement("div"); 
                 mobileTextBlock.className = "mobile-hall-text";

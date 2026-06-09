@@ -3,375 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Культурный код России — Уникальные пластинки для каждого зала</title>
+    <title>Культурный код России</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #FEF7EF;
-            font-family: 'Inter', sans-serif;
-            color: #3A2C22;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        /* блокировка скролла при модалке */
-        body.modal-open {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #FEF7EF; font-family: 'Inter', sans-serif; color: #3A2C22; line-height: 1.5; overflow-x: hidden; }
+        body.modal-open { overflow: hidden; position: fixed; width: 100%; height: 100%; }
         .main-nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #5E4233;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.7rem 6%;
-            flex-wrap: wrap;
-            gap: 1rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border-bottom: 1px solid #C4A57B;
+            position: sticky; top: 0; z-index: 100; background: #5E4233;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.7rem 6%; flex-wrap: wrap; gap: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-bottom: 1px solid #C4A57B;
         }
-
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        .logo-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-            text-align: left;
-        }
-        .logo-main {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #FEF0DA;
-            letter-spacing: -0.3px;
-        }
-        .logo-sub {
-            font-size: 0.75rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            color: #EAD5B2;
-            text-transform: uppercase;
-            margin-top: 4px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.85rem;
-            letter-spacing: 0.03em;
-            text-decoration: none;
-            padding: 0.55rem 1.4rem;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            background: transparent;
-            color: #FFF0DE;
-            border: 1px solid rgba(220, 190, 140, 0.6);
-        }
-
-        .nav-links a.active,
-        .nav-links a:hover {
-            background: #C4A57B;
-            color: #2A241C;
-            border-color: #C4A57B;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
+        .logo-wrapper { display: flex; align-items: center; gap: 1rem; }
+        .logo-circle { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; }
+        .logo-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+        .logo { font-family: 'Playfair Display', serif; display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
+        .logo-main { font-size: 1.5rem; font-weight: 700; color: #FEF0DA; letter-spacing: -0.3px; }
+        .logo-sub { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; color: #EAD5B2; text-transform: uppercase; margin-top: 4px; }
+        .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .nav-links a { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; letter-spacing: 0.03em; text-decoration: none; padding: 0.55rem 1.4rem; border-radius: 60px; cursor: pointer; transition: all 0.25s ease; background: transparent; color: #FFF0DE; border: 1px solid rgba(220,190,140,0.6); }
+        .nav-links a.active, .nav-links a:hover { background: #C4A57B; color: #2A241C; border-color: #C4A57B; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
         @media (max-width: 680px) {
-            .main-nav {
-                flex-direction: column;
-                padding: 0.8rem 4%;
-            }
-            .logo-wrapper {
-                width: 100%;
-                justify-content: center;
-            }
-            .logo {
-                align-items: center;
-                text-align: center;
-            }
-            .logo-main {
-                font-size: 1.3rem;
-            }
-            .logo-sub {
-                font-size: 0.65rem;
-            }
-            .logo-circle {
-                width: 44px;
-                height: 44px;
-            }
+            .main-nav { flex-direction: column; padding: 0.8rem 4%; }
+            .logo-wrapper { width: 100%; justify-content: center; }
+            .logo { align-items: center; text-align: center; }
+            .logo-main { font-size: 1.3rem; }
+            .logo-sub { font-size: 0.65rem; }
+            .logo-circle { width: 44px; height: 44px; }
         }
-
-        .hero {
-            position: relative;
-            height: 60vh;
-            min-height: 380px;
-            overflow: hidden;
-        }
-        .hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.55);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(105deg, rgba(0,0,0,0.55), rgba(0,0,0,0.2));
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .hero-text {
-            text-align: left;
-            flex: 1;
-        }
-        .hero-main-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 4px 22px rgba(0,0,0,0.4);
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            margin-bottom: 0.2rem;
-        }
-        .hero-subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1rem, 3.5vw, 2rem);
-            font-weight: 500;
-            color: #F7E5C2;
-            letter-spacing: 0.02em;
-            margin-bottom: 0.8rem;
-            opacity: 0.95;
-        }
-        .hero-description {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 300;
-            color: rgba(255,250,225,0.9);
-            letter-spacing: 0.3px;
-            border-top: 1px solid rgba(255,215,150,0.4);
-            display: inline-block;
-            padding-top: 0.8rem;
-        }
-        .hero-logo {
-            width: 360px;
-            height: 360px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            filter: drop-shadow(0 0 12px rgba(0,0,0,0.5));
-        }
-        .hero-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
+        .hero { position: relative; height: 60vh; min-height: 380px; overflow: hidden; }
+        .hero img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(0,0,0,0.55), rgba(0,0,0,0.2)); display: flex; align-items: center; justify-content: space-between; padding: 0 7%; gap: 2rem; flex-wrap: wrap; }
+        .hero-text { text-align: left; flex: 1; }
+        .hero-main-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,8vw,5rem); font-weight: 700; color: white; text-shadow: 0 4px 22px rgba(0,0,0,0.4); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.2rem; }
+        .hero-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(1rem,3.5vw,2rem); font-weight: 500; color: #F7E5C2; letter-spacing: 0.02em; margin-bottom: 0.8rem; opacity: 0.95; }
+        .hero-description { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300; color: rgba(255,250,225,0.9); letter-spacing: 0.3px; border-top: 1px solid rgba(255,215,150,0.4); display: inline-block; padding-top: 0.8rem; }
+        .hero-logo { background: transparent; filter: drop-shadow(0 0 12px rgba(0,0,0,0.3)); width: 360px; height: 360px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; filter: drop-shadow(0 0 12px rgba(0,0,0,0.5)); }
+        .hero-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; filter: brightness(1.1) contrast(1.05); mix-blend-mode: normal; }
         @media (max-width: 780px) {
-            .hero {
-                min-height: 480px;
-            }
-            .hero-overlay {
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 1rem;
-                text-align: center;
-                padding: 0 5%;
-            }
-            .hero-text {
-                order: 2;
-                text-align: center;
-                width: 100%;
-                margin-top: 0.5rem;
-            }
-            .hero-logo {
-                order: 1;
-                width: 180px;
-                height: 180px;
-                margin-bottom: 0.5rem;
-            }
-            .hero-main-title {
-                font-size: clamp(1.8rem, 7vw, 2.6rem);
-                margin-bottom: 0.2rem;
-            }
-            .hero-subtitle {
-                font-size: clamp(1rem, 4.5vw, 1.5rem);
-                margin-bottom: 0.4rem;
-            }
-            .hero-description {
-                font-size: 0.85rem;
-                padding-top: 0.5rem;
-                border-top-width: 1px;
-            }
+            .hero { min-height: 480px; }
+            .hero-overlay { flex-direction: column; justify-content: center; align-items: center; gap: 1rem; text-align: center; padding: 0 5%; }
+            .hero-text { order: 2; text-align: center; width: 100%; margin-top: 0.5rem; }
+            .hero-logo { order: 1; width: 180px; height: 180px; margin-bottom: 0.5rem; }
+            .hero-main-title { font-size: clamp(1.8rem,7vw,2.6rem); }
+            .hero-subtitle { font-size: clamp(1rem,4.5vw,1.5rem); }
         }
-
         @media (max-width: 480px) {
-            .hero-logo {
-                width: 150px;
-                height: 150px;
-            }
-            .hero-main-title {
-                font-size: 1.8rem;
-            }
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            .hero-description {
-                font-size: 0.75rem;
-            }
+            .hero-logo { width: 150px; height: 150px; }
+            .hero-main-title { font-size: 1.8rem; }
+            .hero-subtitle { font-size: 1rem; }
         }
-
-        .exhibition-intro {
-            background: #FFF9F0;
-            padding: 3rem 7%;
-            text-align: center;
-            border-bottom: 1px solid #F1E2D3;
-            border-top: 1px solid #F1E2D3;
-            margin: 0;
-        }
-        .exhibition-intro .intro-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: #4C3726;
-            margin-bottom: 1rem;
-            letter-spacing: -0.2px;
-        }
-        .exhibition-intro .intro-text {
-            max-width: 880px;
-            margin: 0 auto;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: #5A4535;
-            background: #FFFEF9;
-            padding: 1.6rem 2rem;
-            border-radius: 48px;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.02);
-            border: 1px solid #F3E7DC;
-        }
-        .exhibition-intro .intro-text p {
-            margin-bottom: 0.8rem;
-        }
-        .exhibition-intro .accent {
-            color: #B47C44;
-            font-weight: 500;
-        }
-
-        .halls-vertical-section {
-            width: 100%;
-            padding: 0;
-            margin: 0;
-        }
-        .halls-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        .hall-card {
-            position: relative;
-            background: #FFFBF5;
-            border-radius: 32px 32px 36px 36px;
-            overflow: visible;
-            box-shadow: 0 15px 32px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.2s;
-        }
-        .hall-card:hover {
-            box-shadow: 0 22px 36px rgba(0, 0, 0, 0.08);
-        }
-
-        .hall-title-wrapper {
-            padding: 1rem 2rem 0.5rem 2rem;
-            background: #FFFBF5;
-        }
-        .hall-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.9rem;
-            font-weight: 600;
-            color: #3E2F23;
-            text-align: center;
-            letter-spacing: -0.3px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .hall-title::before,
-        .hall-title::after {
-            content: "";
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, #E6C87A, #DDBF8A, #E6C87A);
-        }
-
+        .exhibition-intro { background: #FFF9F0; padding: 3rem 7%; text-align: center; border-bottom: 1px solid #F1E2D3; border-top: 1px solid #F1E2D3; margin: 0; }
+        .exhibition-intro .intro-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #4C3726; margin-bottom: 1rem; letter-spacing: -0.2px; }
+        .exhibition-intro .intro-text { max-width: 880px; margin: 0 auto; font-size: 1.05rem; line-height: 1.6; color: #5A4535; background: #FFFEF9; padding: 1.6rem 2rem; border-radius: 48px; box-shadow: 0 6px 14px rgba(0,0,0,0.02); border: 1px solid #F3E7DC; }
+        .exhibition-intro .intro-text p { margin-bottom: 0.8rem; }
+        .exhibition-intro .accent { color: #B47C44; font-weight: 500; }
+        .halls-vertical-section { width: 100%; padding: 0; margin: 0; }
+        .halls-stack { display: flex; flex-direction: column; gap: 2rem; }
+        .hall-card { position: relative; background: #FFFBF5; border-radius: 32px 32px 36px 36px; overflow: visible; box-shadow: 0 15px 32px rgba(0,0,0,0.05); transition: box-shadow 0.2s; }
+        .hall-card:hover { box-shadow: 0 22px 36px rgba(0,0,0,0.08); }
+        .hall-title-wrapper { padding: 1rem 2rem 0.5rem 2rem; background: #FFFBF5; }
+        .hall-title { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 600; color: #3E2F23; text-align: center; letter-spacing: -0.3px; display: flex; align-items: center; gap: 1rem; }
+        .hall-title::before, .hall-title::after { content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, #E6C87A, #DDBF8A, #E6C87A); }
         .hall-panorama {
             position: relative;
             width: 100%;
             background: #1f1914;
-            overflow: hidden;
+            overflow: visible;       /* чтобы пластинка не обрезалась */
             height: 550px;
             box-shadow: inset 0 0 0 1px rgba(230,200,122,0.2);
             cursor: ns-resize;
             touch-action: pan-x pan-y;
         }
-
         .panorama-image-wrapper {
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow: hidden;       /* обрезает изображение для панорамы */
             position: relative;
         }
-
         .panorama-img {
             display: block;
             width: 100%;
@@ -381,12 +92,11 @@
             pointer-events: none;
             transform: translateY(0);
         }
-
         .panorama-text {
             position: absolute;
             bottom: 28px;
             left: 28px;
-            background: rgba(255, 248, 235, 0.85);
+            background: rgba(255,248,235,0.85);
             padding: 0.8rem 1.6rem;
             border-radius: 28px;
             font-size: 0.95rem;
@@ -400,37 +110,13 @@
             z-index: 5;
             pointer-events: none;
         }
-        .panorama-text p {
-            margin-bottom: 0.25rem;
-        }
-
-        .mobile-hall-text {
-            margin: 1rem 1.2rem 0.5rem 1.2rem;
-            padding: 1rem 1.2rem;
-            background: #FFFEF9;
-            border-radius: 28px;
-            border: 1px solid #EEDBC8;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: #3E2F23;
-        }
-        .mobile-hall-text p {
-            margin-bottom: 0.5rem;
-        }
-        .mobile-hall-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
+        .mobile-hall-text { margin: 1rem 1.2rem 0.5rem 1.2rem; padding: 1rem 1.2rem; background: #FFFEF9; border-radius: 28px; border: 1px solid #EEDBC8; font-size: 0.9rem; line-height: 1.5; color: #3E2F23; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .vinyl-player {
             position: absolute;
-            bottom: 20px;
-            right: 30px;
+            top: 50%;
+            right: -80px;           /* выступает наполовину за правый край (ширина 160/2) */
+            transform: translateY(-50%);
             width: 160px;
             height: 160px;
             background-size: contain;
@@ -445,526 +131,116 @@
             animation: spin 2s linear infinite;
             animation-play-state: paused;
         }
-        .vinyl-player:hover {
-            filter: drop-shadow(0 0 14px #E6C87A);
-        }
-        .vinyl-player.spinning {
-            animation-play-state: running;
-        }
-
-        .carousel-block {
-            padding: 1rem 0 2rem 0;
-            background: #FFFBF5;
-            position: relative;
-            z-index: 10;
-        }
-        .carousel-label {
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            color: #B28B66;
-            margin: 0 2rem 0.8rem 2rem;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .track-outer {
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 0.5rem 2rem 1rem 2rem;
-            scrollbar-width: thin;
-            cursor: grab;
-            -webkit-overflow-scrolling: touch;
-        }
+        .vinyl-player:hover { filter: drop-shadow(0 0 14px #E6C87A); }
+        .vinyl-player.spinning { animation-play-state: running; }
+        .carousel-block { padding: 1rem 0 2rem 0; background: #FFFBF5; position: relative; z-index: 10; }
+        .carousel-label { font-size: 0.7rem; letter-spacing: 0.2em; color: #B28B66; margin: 0 2rem 0.8rem 2rem; text-transform: uppercase; font-weight: 600; }
+        .track-outer { overflow-x: auto; scroll-behavior: smooth; padding: 0.5rem 2rem 1rem 2rem; scrollbar-width: thin; cursor: grab; -webkit-overflow-scrolling: touch; }
         .track-outer:active { cursor: grabbing; }
-        .cards-track {
-            display: flex;
-            gap: 1.5rem;
-            width: max-content;
-        }
-
-        .expo-card {
-            flex: 0 0 270px;
-            background: #FFFEF9;
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.04);
-            cursor: pointer;
-            transition: all 0.25s ease;
-            border: 1px solid #F2E5D6;
-        }
-        .expo-card.ceramic-card {
-            background: #FDF4E8;
-        }
-        .expo-card:hover {
-            transform: translateY(-8px);
-            border-color: #E6C87A;
-            box-shadow: 0 20px 28px -8px rgba(0,0,0,0.12);
-        }
-        .expo-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background-color: #FAF3EA;
-            border-radius: 24px;
-            display: block;
-        }
-        .expo-info {
-            padding: 0.9rem 1rem 1rem;
-        }
-        .expo-name {
-            font-weight: 700;
-            font-size: 1rem;
-            color: #3E2F23;
-            line-height: 1.3;
-            margin-bottom: 6px;
-        }
-        .expo-type {
-            font-size: 0.65rem;
-            color: #A57352;
-            background: #F7EDE2;
-            display: inline-block;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            margin-top: 0.3rem;
-        }
-
-        .carousel-nav {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin: 0.5rem 2rem 0.2rem 2rem;
-        }
-        .c-arrow {
-            width: 44px;
-            height: 44px;
-            background: #FAF0E4;
-            border-radius: 44px;
-            border: 1px solid #EADBCB;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.3rem;
-            transition: 0.2s;
-            color: #6B4F33;
-        }
-        .c-arrow:hover {
-            background: #E6C87A;
-            color: #2A241C;
-            border-color: #E6C87A;
-        }
-        .c-counter {
-            font-size: 0.85rem;
-            font-weight: 600;
-            background: #F7EDE2;
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            color: #6B4F33;
-        }
-
-        /* ---------- МОБИЛЬНЫЕ УЛУЧШЕНИЯ ---------- */
+        .cards-track { display: flex; gap: 1.5rem; width: max-content; }
+        .expo-card { flex: 0 0 270px; background: #FFFEF9; border-radius: 28px; overflow: hidden; box-shadow: 0 6px 14px rgba(0,0,0,0.04); cursor: pointer; transition: all 0.25s ease; border: 1px solid #F2E5D6; }
+        .expo-card.ceramic-card { background: #FDF4E8; }
+        .expo-card:hover { transform: translateY(-8px); border-color: #E6C87A; box-shadow: 0 20px 28px -8px rgba(0,0,0,0.12); }
+        .expo-img { width: 100%; height: 180px; object-fit: cover; background-color: #FAF3EA; border-radius: 24px; display: block; }
+        .expo-info { padding: 0.9rem 1rem 1rem; }
+        .expo-name { font-weight: 700; font-size: 1rem; color: #3E2F23; line-height: 1.3; margin-bottom: 6px; }
+        .expo-type { font-size: 0.65rem; color: #A57352; background: #F7EDE2; display: inline-block; padding: 0.2rem 0.8rem; border-radius: 30px; margin-top: 0.3rem; }
+        .carousel-nav { display: flex; justify-content: flex-end; gap: 1rem; margin: 0.5rem 2rem 0.2rem 2rem; }
+        .c-arrow { width: 44px; height: 44px; background: #FAF0E4; border-radius: 44px; border: 1px solid #EADBCB; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.3rem; transition: 0.2s; color: #6B4F33; }
+        .c-arrow:hover { background: #E6C87A; color: #2A241C; border-color: #E6C87A; }
+        .c-counter { font-size: 0.85rem; font-weight: 600; background: #F7EDE2; padding: 0.4rem 1.2rem; border-radius: 40px; color: #6B4F33; }
         @media (max-width: 700px) {
-            body, html {
-                overflow-x: hidden;
-                width: 100%;
-            }
-            .hall-panorama {
-                height: auto;
-                min-height: 280px;
-                overflow: visible;
-                cursor: auto;
-                background: #1f1914;
-            }
-            .panorama-image-wrapper {
-                height: auto;
-                max-height: none;
-                overflow: visible;
-            }
-            .panorama-img {
-                width: 100%;
-                height: auto;
-                transform: none !important;
-                transition: none;
-                pointer-events: auto;
-            }
-            .hall-panorama .panorama-text {
-                display: none;
-            }
+            body, html { overflow-x: hidden; width: 100%; }
+            .hall-panorama { height: auto; min-height: 280px; overflow: visible; cursor: auto; background: #1f1914; }
+            .panorama-image-wrapper { height: auto; max-height: none; overflow: hidden; }
+            .panorama-img { width: 100%; height: auto; transform: none !important; transition: none; pointer-events: auto; }
+            .hall-panorama .panorama-text { display: none; }
             .vinyl-player {
-                position: absolute;
-                bottom: 12px;
-                right: 12px;
+                top: 50%;
+                right: -38px;          /* 75/2 ≈ 38 */
+                transform: translateY(-50%);
                 width: 75px;
                 height: 75px;
                 margin: 0;
                 z-index: 20;
             }
-            .expo-card {
-                flex: 0 0 230px;
-            }
-            .expo-img {
-                height: 150px;
-                border-radius: 20px;
-            }
-            .hall-title-wrapper {
-                padding: 0.8rem 1rem 0.3rem 1rem;
-            }
-            .hall-title {
-                font-size: 1.5rem;
-                gap: 0.5rem;
-            }
-            .carousel-label {
-                margin: 0 1rem 0.5rem 1rem;
-                font-size: 0.65rem;
-            }
-            .track-outer {
-                padding: 0.5rem 1rem 1rem 1rem;
-            }
-            .carousel-nav {
-                margin: 0.5rem 1rem 0.2rem 1rem;
-            }
-            .c-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-            .mobile-hall-text {
-                margin: 1rem 1rem 0.5rem 1rem;
-                padding: 0.9rem 1.2rem;
-                font-size: 0.88rem;
-                border-radius: 24px;
-            }
+            .expo-card { flex: 0 0 230px; }
+            .expo-img { height: 150px; border-radius: 20px; }
+            .hall-title-wrapper { padding: 0.8rem 1rem 0.3rem 1rem; }
+            .hall-title { font-size: 1.5rem; gap: 0.5rem; }
+            .carousel-label { margin: 0 1rem 0.5rem 1rem; font-size: 0.65rem; }
+            .track-outer { padding: 0.5rem 1rem 1rem 1rem; }
+            .carousel-nav { margin: 0.5rem 1rem 0.2rem 1rem; }
+            .c-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
+            .mobile-hall-text { margin: 1rem 1rem 0.5rem 1rem; padding: 0.9rem 1.2rem; font-size: 0.88rem; border-radius: 24px; }
         }
-
         @media (max-width: 480px) {
             .exhibition-intro { padding: 2rem 1rem; }
             .exhibition-intro .intro-title { font-size: 1.5rem; }
             .exhibition-intro .intro-text { font-size: 0.9rem; padding: 1rem 1.2rem; border-radius: 32px; }
             .hall-title { font-size: 1.3rem; }
             .expo-card { flex: 0 0 200px; }
-            .mobile-hall-text { 
-                padding: 0.8rem 1rem; 
-                font-size: 0.82rem; 
-                margin: 0.8rem 0.8rem 0.5rem 0.8rem; 
-            }
-            .vinyl-player { 
-                width: 65px; 
-                height: 65px; 
-                bottom: 8px; 
-                right: 8px; 
+            .mobile-hall-text { padding: 0.8rem 1rem; font-size: 0.82rem; margin: 0.8rem 0.8rem 0.5rem 0.8rem; }
+            .vinyl-player {
+                top: 50%;
+                right: -33px;          /* 65/2 ≈ 33 */
+                transform: translateY(-50%);
+                width: 65px;
+                height: 65px;
             }
             .c-arrow { width: 38px; height: 38px; }
-            .carousel-label { font-size: 0.6rem; }
-            .hall-panorama {
-                min-height: 240px;
-            }
-            .modal-img {
-                height: 200px;
-            }
-            .modal-container {
-                width: 95vw;
-                border-radius: 32px;
-            }
-            .modal-body {
-                padding: 0.5rem 1rem 1.5rem;
-            }
+            .hall-panorama { min-height: 240px; }
+            .modal-img { height: 200px; }
+            .modal-container { width: 95vw; border-radius: 32px; }
+            .modal-body { padding: 0.5rem 1rem 1.5rem; }
         }
-
-        /* страница рецептов */
-        #recipesPage {
-            padding: 2rem 5% 3rem;
-            display: none;
-            background: #FEF7EF;
-        }
+        #recipesPage { padding: 2rem 5% 3rem; display: none; background: #FEF7EF; }
         #recipesPage.active { display: block; }
-        .recipes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .recipe-card {
-            background: #FFFBF5;
-            border-radius: 32px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-            transition: 0.2s;
-            border: 1px solid #F2E2D0;
-            cursor: pointer;
-            position: relative;
-        }
-        .recipe-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 22px 30px rgba(0,0,0,0.08);
-        }
-        .recipe-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background: #FAF3EA;
-        }
-        .recipe-info {
-            padding: 1rem 1.2rem 1.2rem;
-        }
-        .recipe-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.2rem;
-            color: #3E2F23;
-        }
-        .recipe-tag {
-            display: inline-block;
-            font-size: 0.7rem;
-            background: #F1E2D3;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            margin: 0.5rem 0 0.4rem;
-            color: #9B6E4A;
-        }
-        .delete-recipe {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(60, 45, 35, 0.8);
-            backdrop-filter: blur(5px);
-            border: none;
-            border-radius: 30px;
-            width: 34px;
-            height: 34px;
-            font-size: 1rem;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 3;
-            transition: 0.15s;
-        }
-        .delete-recipe:hover {
-            background: #BD7A5A;
-            transform: scale(1.05);
-        }
-        .add-form {
-            background: #FFF7ED;
-            padding: 1.8rem;
-            border-radius: 36px;
-            max-width: 720px;
-            margin: 0 auto 2.5rem;
-            border: 1px solid #F1E0CE;
-        }
-        .add-form input, .add-form textarea, .add-form select {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            margin: 0.4rem 0 1rem;
-            border-radius: 60px;
-            border: 1px solid #EAD5C0;
-            font-family: inherit;
-            background: #FFFFFF;
-        }
-        .submit-btn {
-            background: #B48C5C;
-            color: white;
-            border: none;
-            padding: 0.7rem 2rem;
-            border-radius: 60px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-        .submit-btn:hover {
-            background: #E6C87A;
-            color: #2A241C;
-        }
-
-        .modal-bg {
-            position: fixed;
-            top:0; left:0; width:100%; height:100%;
-            background: rgba(40, 30, 22, 0.92);
-            backdrop-filter: blur(12px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
+        .recipes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 2rem; }
+        .recipe-card { background: #FFFBF5; border-radius: 32px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.04); transition: 0.2s; border: 1px solid #F2E2D0; cursor: pointer; position: relative; }
+        .recipe-card:hover { transform: translateY(-6px); box-shadow: 0 22px 30px rgba(0,0,0,0.08); }
+        .recipe-img { width: 100%; height: 180px; object-fit: cover; background: #FAF3EA; }
+        .recipe-info { padding: 1rem 1.2rem 1.2rem; }
+        .recipe-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 0.2rem; color: #3E2F23; }
+        .recipe-tag { display: inline-block; font-size: 0.7rem; background: #F1E2D3; padding: 0.2rem 0.8rem; border-radius: 30px; margin: 0.5rem 0 0.4rem; color: #9B6E4A; }
+        .delete-recipe { position: absolute; top: 12px; right: 12px; background: rgba(60,45,35,0.8); backdrop-filter: blur(5px); border: none; border-radius: 30px; width: 34px; height: 34px; font-size: 1rem; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3; transition: 0.15s; }
+        .delete-recipe:hover { background: #BD7A5A; transform: scale(1.05); }
+        .add-form { background: #FFF7ED; padding: 1.8rem; border-radius: 36px; max-width: 720px; margin: 0 auto 2.5rem; border: 1px solid #F1E0CE; }
+        .add-form input, .add-form textarea, .add-form select { width: 100%; padding: 0.75rem 1rem; margin: 0.4rem 0 1rem; border-radius: 60px; border: 1px solid #EAD5C0; font-family: inherit; background: #FFFFFF; }
+        .submit-btn { background: #B48C5C; color: white; border: none; padding: 0.7rem 2rem; border-radius: 60px; cursor: pointer; font-weight: 500; transition: 0.2s; }
+        .submit-btn:hover { background: #E6C87A; color: #2A241C; }
+        .modal-bg { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(40,30,22,0.92); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; z-index: 1000; }
         .modal-bg.open { display: flex; }
-        .modal-container {
-            width: 90vw;
-            max-width: 760px;
-            max-height: 85vh;
-            background: #FFFBF5;
-            border-radius: 44px;
-            overflow-y: auto;
-            box-shadow: 0 40px 50px rgba(0,0,0,0.3);
-        }
-        .modal-close {
-            float: right;
-            background: #3E2F23cc;
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.6rem;
-            cursor: pointer;
-            margin: 16px;
-            transition: 0.2s;
-        }
-        .modal-close:hover { background: #B47C44; transform: scale(1.02);}
-        .modal-img { 
-            width: 100%; 
-            height: 260px; 
-            object-fit: contain; 
-            background: #F7EDE2; 
-            border-radius: 44px 44px 0 0; 
-            padding: 1rem;
-        }
+        .modal-container { width: 90vw; max-width: 760px; max-height: 85vh; background: #FFFBF5; border-radius: 44px; overflow-y: auto; box-shadow: 0 40px 50px rgba(0,0,0,0.3); }
+        .modal-close { float: right; background: #3E2F23cc; border: none; width: 44px; height: 44px; border-radius: 50%; color: white; font-size: 1.6rem; cursor: pointer; margin: 16px; transition: 0.2s; }
+        .modal-close:hover { background: #B47C44; transform: scale(1.02); }
+        .modal-img { width: 100%; height: 260px; object-fit: contain; background: #F7EDE2; border-radius: 44px 44px 0 0; padding: 1rem; }
         .modal-body { padding: 0.8rem 2rem 2rem; }
-        .modal-section {
-            background: #FFFCF8;
-            border-radius: 28px;
-            margin-bottom: 1.5rem;
-            padding: 1rem 1.4rem;
-            border: 1px solid #F2E3D4;
-        }
-        .modal-section h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: #B47C44;
-            margin-bottom: 0.7rem;
-            border-left: 4px solid #E6C87A;
-            padding-left: 0.8rem;
-        }
-        .modal-history-text {
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #4B3A2A;
-        }
-        .ingredients-list, .steps-list {
-            margin-left: 1.2rem;
-            padding-left: 0.2rem;
-        }
-        .ingredients-list li, .steps-list li {
-            margin-bottom: 0.5rem;
-            color: #3E2F23;
-        }
-        .save-recipe-btn {
-            background: #DDBF8A;
-            border: none;
-            padding: 0.7rem 1.4rem;
-            border-radius: 60px;
-            font-weight: 600;
-            cursor: pointer;
-            color: #2A241C;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 0.5rem;
-            transition: 0.2s;
-        }
-        .save-recipe-btn:hover { background: #E6C87A; transform: scale(1.02);}
-        footer {
-            text-align: center;
-            padding: 2rem 5%;
-            background: #EBDCCB;
-            margin-top: 0;
-            font-size: 0.8rem;
-            color: #5A4636;
-        }
-        .empty-recipes-msg {
-            grid-column: 1/-1;
-            text-align: center;
-            padding: 2.5rem;
-            color: #A68366;
-            font-style: italic;
-        }
+        .modal-section { background: #FFFCF8; border-radius: 28px; margin-bottom: 1.5rem; padding: 1rem 1.4rem; border: 1px solid #F2E3D4; }
+        .modal-section h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #B47C44; margin-bottom: 0.7rem; border-left: 4px solid #E6C87A; padding-left: 0.8rem; }
+        .modal-history-text { font-size: 1rem; line-height: 1.5; color: #4B3A2A; }
+        .ingredients-list, .steps-list { margin-left: 1.2rem; padding-left: 0.2rem; }
+        .ingredients-list li, .steps-list li { margin-bottom: 0.5rem; color: #3E2F23; }
+        .save-recipe-btn { background: #DDBF8A; border: none; padding: 0.7rem 1.4rem; border-radius: 60px; font-weight: 600; cursor: pointer; color: #2A241C; display: inline-flex; align-items: center; gap: 8px; margin-top: 0.5rem; transition: 0.2s; }
+        .save-recipe-btn:hover { background: #E6C87A; transform: scale(1.02); }
+        footer { text-align: center; padding: 2rem 5%; background: #EBDCCB; margin-top: 0; font-size: 0.8rem; color: #5A4636; }
+        .empty-recipes-msg { grid-column: 1/-1; text-align: center; padding: 2.5rem; color: #A68366; font-style: italic; }
     </style>
 </head>
 <body>
 <nav class="main-nav">
-    <div class="logo-wrapper">
-        <div class="logo-circle">
-            <img src="photos/лого.png" alt="Логотип" onerror="this.src='https://placehold.co/100x100?text=Logo'">
-        </div>
-        <div class="logo">
-            <span class="logo-main">Вкус ностальгии</span>
-            <span class="logo-sub">Культурный код России</span>
-        </div>
-    </div>
-    <div class="nav-links">
-        <a id="mainTabBtn" class="active">ЭКСПОЗИЦИЯ</a>
-        <a id="recipesTabBtn">КНИГА РЕЦЕПТОВ</a>
-    </div>
+    <div class="logo-wrapper"><div class="logo-circle"><img src="photos/лого.png" alt="Логотип" onerror="this.src='https://placehold.co/100x100?text=Logo'"></div><div class="logo"><span class="logo-main">Вкус ностальгии</span><span class="logo-sub">Культурный код России</span></div></div>
+    <div class="nav-links"><a id="mainTabBtn" class="active">ЭКСПОЗИЦИЯ</a><a id="recipesTabBtn">КНИГА РЕЦЕПТОВ</a></div>
 </nav>
-
 <main id="mainPage">
-    <div class="hero">
-        <img src="photos/vibehype_20260426_184729_ca34a99e.jpg" alt="Русское застолье" onerror="this.src='https://placehold.co/1600x900?text=Культурный+код'">
-        <div class="hero-overlay">
-            <div class="hero-text">
-                <div class="hero-main-title">Вкус ностальгии</div>
-                <div class="hero-subtitle">Культурный код России</div>
-                <div class="hero-description">Выставка — погружение в традиции</div>
-            </div>
-            <div class="hero-logo">
-                <img src="photos/лого.png" alt="Логотип">
-            </div>
-        </div>
-    </div>
-
-    <div class="exhibition-intro">
-        <div class="intro-title">«Вкус, который помнит время»</div>
-        <div class="intro-text">
-            <p>Выставка <span class="accent">«Культурный код России: Вкус ностальгии»</span> — это путешествие сквозь эпохи. От жаркого пламени русской печи до императорских банкетов, от советских столовых до бабушкиной кухни.</p>
-            <p>Прокручивайте панорамы вручную (мышью или пальцем), изучайте экспонаты. Карточки с керамикой отмечены особым оттенком. Откройте блюдо — внутри ждёт <span class="accent">история, детальный рецепт и список ингредиентов</span>. Сохраняйте любимое в Книгу рецептов!</p>
-        </div>
-    </div>
-
-    <div class="halls-vertical-section">
-        <div id="hallsStack" class="halls-stack"></div>
-    </div>
+    <div class="hero"><img src="photos/vibehype_20260426_184729_ca34a99e.jpg" alt="Русское застолье" onerror="this.src='https://placehold.co/1600x900?text=Культурный+код'"><div class="hero-overlay"><div class="hero-text"><div class="hero-main-title">Вкус ностальгии</div><div class="hero-subtitle">Культурный код России</div><div class="hero-description">Выставка — погружение в традиции</div></div><div class="hero-logo"><img src="photos/лого.png" alt="Логотип"></div></div></div>
+    <div class="exhibition-intro"><div class="intro-title">«Вкус, который помнит время»</div><div class="intro-text"><p>Выставка <span class="accent">«Культурный код России: Вкус ностальгии»</span> — это путешествие сквозь эпохи. От жаркого пламени русской печи до императорских банкетов, от советских столовых до бабушкиной кухни.</p><p>Прокручивайте панорамы вручную (мышью или пальцем), изучайте экспонаты. Карточки с керамикой отмечены особым оттенком. Откройте блюдо — внутри ждёт <span class="accent">история, детальный рецепт и список ингредиентов</span>. Сохраняйте любимое в Книгу рецептов!</p></div></div>
+    <div class="halls-vertical-section"><div id="hallsStack" class="halls-stack"></div></div>
     <footer><small>Тюмень 2026 • Культурный код России</small></footer>
 </main>
-
-<div id="recipesPage">
-    <div style="text-align:center; margin-bottom:1.5rem;"><h2 style="font-family:'Playfair Display'; color:#5C4330;">Книга рецептов</h2><p style="color:#876E52;">Сохраняйте кулинарные истории из экспозиции или добавляйте свои</p></div>
-    <div class="add-form">
-        <label>Название блюда</label><input type="text" id="newTitle" placeholder="Бабушкин рецепт">
-        <label>Раздел</label><select id="newTag"><option>Блюдо</option><option>Напиток</option><option>Десерт</option><option>Выпечка</option></select>
-        <label>Ингредиенты</label><textarea id="newIngredients" rows="2" placeholder="Список продуктов..."></textarea>
-        <label>Приготовление</label><textarea id="newSteps" rows="3" placeholder="Пошагово..."></textarea>
-        <button id="addCustomRecipeBtn" class="submit-btn"> + Сохранить рецепт</button>
-    </div>
-    <div id="recipesGrid" class="recipes-grid"></div>
-</div>
-
-<div class="modal-bg" id="modalBg">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeModal()">✕</button>
-        <img class="modal-img" id="modalImg">
-        <div class="modal-body">
-            <div id="modalTag" style="color:#B48C5C; font-weight:500; margin-bottom:4px;"></div>
-            <h3 id="modalTitle" style="font-family:'Playfair Display'; margin:0 0 1rem 0; color:#3E2F23;"></h3>
-            <div class="modal-section">
-                <h4>📜 История блюда</h4>
-                <div id="modalHistory" class="modal-history-text"></div>
-            </div>
-            <div class="modal-section">
-                <h4>🥄 Ингредиенты</h4>
-                <ul id="modalIngredientsList" class="ingredients-list"></ul>
-            </div>
-            <div class="modal-section">
-                <h4>🍳 Приготовление</h4>
-                <ol id="modalStepsList" class="steps-list"></ol>
-            </div>
-            <button id="saveRecipeModalBtn" class="save-recipe-btn">📌 Сохранить в книгу рецептов</button>
-        </div>
-    </div>
-</div>
-
+<div id="recipesPage"><div style="text-align:center; margin-bottom:1.5rem;"><h2 style="font-family:'Playfair Display'; color:#5C4330;">Книга рецептов</h2><p style="color:#876E52;">Сохраняйте кулинарные истории из экспозиции или добавляйте свои</p></div><div class="add-form"><label>Название блюда</label><input type="text" id="newTitle" placeholder="Бабушкин рецепт"><label>Раздел</label><select id="newTag"><option>Блюдо</option><option>Напиток</option><option>Десерт</option><option>Выпечка</option></select><label>Ингредиенты</label><textarea id="newIngredients" rows="2" placeholder="Список продуктов..."></textarea><label>Приготовление</label><textarea id="newSteps" rows="3" placeholder="Пошагово..."></textarea><button id="addCustomRecipeBtn" class="submit-btn"> + Сохранить рецепт</button></div><div id="recipesGrid" class="recipes-grid"></div></div>
+<div class="modal-bg" id="modalBg"><div class="modal-container"><button class="modal-close" onclick="closeModal()">✕</button><img class="modal-img" id="modalImg"><div class="modal-body"><div id="modalTag" style="color:#B48C5C; font-weight:500; margin-bottom:4px;"></div><h3 id="modalTitle" style="font-family:'Playfair Display'; margin:0 0 1rem 0; color:#3E2F23;"></h3><div class="modal-section"><h4>📜 История блюда</h4><div id="modalHistory" class="modal-history-text"></div></div><div class="modal-section"><h4>🥄 Ингредиенты</h4><ul id="modalIngredientsList" class="ingredients-list"></ul></div><div class="modal-section"><h4>🍳 Приготовление</h4><ol id="modalStepsList" class="steps-list"></ol></div><button id="saveRecipeModalBtn" class="save-recipe-btn">📌 Сохранить в книгу рецептов</button></div></div></div>
 <script>
-    // --------------------------------------------------------------
-    // БАЗА ЭКСПОНАТОВ (полная)
-    // --------------------------------------------------------------
     const exhibitsDB = {
         hall1_shchi: { tag: "Зал1 · Блюдо", title: "Щи из квашеной капусты", img: "photos/1/unnamed.png", history: "Традиционные русские щи, томившиеся в печи 5–6 часов. Насыщенный кислый вкус, аромат укропа и сметаны.", ingredients: ["Капуста квашеная — 500 г", "Говядина — 600 г", "Картофель — 3 шт.", "Лук, морковь — по 1 шт.", "Лавровый лист, перец горошком"], steps: ["Сварить мясной бульон", "Добавить квашеную капусту, картофель, зажарку из лука и моркови", "Томить на малом огне 40 минут", "Подавать со сметаной и зеленью"] },
         hall1_kasha: { tag: "Зал1 · Блюдо", title: "Гречневая каша", img: "photos/1/11 (1).png", history: "Рассыпчатая гречка, томлёная в чугунке. Классическое блюдо русской печи, часто подавалась с грибами или маслом.", ingredients: ["Гречневая крупа — 1 стакан", "Вода — 2 стакана", "Сливочное масло — 30 г"], steps: ["Перебрать крупу, промыть", "Обжарить на сухой сковороде до аромата", "Залить кипятком, варить до выпаривания воды", "Укутать и настоять 20 минут"] },
@@ -1125,7 +401,7 @@
             
             const vinylDiv = document.createElement("div"); vinylDiv.className = "vinyl-player";
             vinylDiv.style.backgroundImage = `url(${hall.vinylImg})`;
-            panoramaDiv.appendChild(vinylDiv);
+            panoramaDiv.appendChild(vinylDiv);   // ← пластинка внутри панорамы (для позиционирования относительно неё)
             
             if (!isMobile) panoramaDiv.appendChild(textSpan);
             card.appendChild(panoramaDiv);

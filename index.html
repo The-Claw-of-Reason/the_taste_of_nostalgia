@@ -461,6 +461,17 @@
             text-transform: uppercase;
             font-weight: 600;
         }
+            .hall-panorama {
+        overflow: visible;   /* вместо hidden */
+        /* остальные стили не трогаем */
+    }
+
+    .vinyl-player {
+        position: absolute;
+        bottom: -40px;       /* отрицательное значение — опускается вниз */
+        right: 1px;        /* отрицательное значение — выезжает вправо */
+        /* можно также использовать transform: translate(10px, 10px) */
+    }
         .track-outer {
             overflow-x: auto;
             scroll-behavior: smooth;

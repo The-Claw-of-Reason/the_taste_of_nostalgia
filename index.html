@@ -40,7 +40,7 @@
         .hero-main-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,8vw,5rem); font-weight: 700; color: white; text-shadow: 0 4px 22px rgba(0,0,0,0.4); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.2rem; }
         .hero-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(1rem,3.5vw,2rem); font-weight: 500; color: #F7E5C2; letter-spacing: 0.02em; margin-bottom: 0.8rem; opacity: 0.95; }
         .hero-description { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300; color: rgba(255,250,225,0.9); letter-spacing: 0.3px; border-top: 1px solid rgba(255,215,150,0.4); display: inline-block; padding-top: 0.8rem; }
-        .hero-logo { background: transparent; filter: drop-shadow(0 0 12px rgba(0,0,0,0.3)); width: 360px; height: 360px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; filter: drop-shadow(0 0 12px rgba(0,0,0,0.5)); }
+        .hero-logo { background: transparent; width: 360px; height: 360px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; filter: drop-shadow(0 0 12px rgba(0,0,0,0.5)); }
         .hero-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; filter: brightness(1.1) contrast(1.05); mix-blend-mode: normal; }
         @media (max-width: 780px) {
             .hero { min-height: 480px; }
@@ -149,21 +149,52 @@
         .c-arrow { width: 44px; height: 44px; background: #FAF0E4; border-radius: 44px; border: 1px solid #EADBCB; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.3rem; transition: 0.2s; color: #6B4F33; }
         .c-arrow:hover { background: #E6C87A; color: #2A241C; border-color: #E6C87A; }
         .c-counter { font-size: 0.85rem; font-weight: 600; background: #F7EDE2; padding: 0.4rem 1.2rem; border-radius: 40px; color: #6B4F33; }
+        
+        /* ===== Мобильные устройства (ширина ≤ 700px) – только один чистый блок ===== */
         @media (max-width: 700px) {
             body, html { overflow-x: hidden; width: 100%; }
-            .hall-panorama { height: auto; min-height: 280px; overflow: visible; cursor: auto; background: #1f1914; }
-            .panorama-image-wrapper { height: auto; max-height: none; overflow: hidden; }
-            .panorama-img { width: 100%; height: auto; transform: none !important; transition: none; pointer-events: auto; }
-            .hall-panorama .panorama-text { display: none; }
+            /* Панорама – высота автоматическая, без фиксированной высоты */
+            .hall-panorama {
+                position: relative;
+                height: auto;
+                overflow: visible;
+                background: #1f1914;
+                cursor: auto;
+            }
+            .panorama-image-wrapper {
+                height: auto;
+                max-height: none;
+                overflow: hidden;
+            }
+            .panorama-img {
+                width: 100%;
+                height: auto;
+                transform: none !important;
+                transition: none;
+                pointer-events: auto;
+            }
+            /* Скрываем текст поверх панорамы (дублируется в отдельном блоке) */
+            .hall-panorama .panorama-text {
+                display: none;
+            }
+            /* Пластинка – правый нижний угол, удобный размер, без смещений */
             .vinyl-player {
-                top: 50%;
-                right: -38px;
-                transform: translateY(-50%);
-                width: 75px;
-                height: 75px;
+                position: absolute;
+                top: auto;
+                bottom: 12px;
+                right: 12px;
+                transform: none;
+                width: 80px;
+                height: 80px;
                 margin: 0;
                 z-index: 20;
+                cursor: pointer;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                border-radius: 50%;
             }
+            /* Карусель и карточки */
             .expo-card { flex: 0 0 230px; }
             .expo-img { height: 150px; border-radius: 20px; }
             .hall-title-wrapper { padding: 0.8rem 1rem 0.3rem 1rem; }
@@ -174,96 +205,8 @@
             .c-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
             .mobile-hall-text { margin: 1rem 1rem 0.5rem 1rem; padding: 0.9rem 1.2rem; font-size: 0.88rem; border-radius: 24px; }
         }
-        /* 1. Добавить position: relative для панорамы - чтобы пластинка позиционировалась относительно неё */
-.hall-panorama {
-    position: relative;
-    /* ... остальные свойства остаются */
-}
-/* ===== Мобильные устройства (ширина ≤ 700px) ===== */
-@media (max-width: 700px) {
-    /* Панорама – без фиксированной высоты, без вертикального скролла */
-    .hall-panorama {
-        position: relative;   /* важно для абсолютного позиционирования пластинки */
-        height: auto;
-        overflow: visible;
-        background: #1f1914;
-    }
-
-    /* Изображение панорамы – просто ширина 100%, без трансформаций */
-    .panorama-img {
-        width: 100%;
-        height: auto;
-        transform: none !important;
-        transition: none;
-        pointer-events: auto;
-    }
-
-    /* Текст поверх панорамы – скрываем (на мобилке он дублируется в отдельном блоке) */
-    .hall-panorama .panorama-text {
-        display: none;
-    }
-
-    /* Пластинка – правый нижний угол, удобный размер */
-    .vinyl-player {
-        position: absolute;
-        top: auto;            /* отключаем top */
-        bottom: 12px;         /* отступ снизу */
-        right: 12px;          /* отступ справа */
-        transform: none;      /* убираем центрирование через translate */
-        width: 80px;
-        height: 80px;
-        margin: 0;
-        z-index: 20;
-        cursor: pointer;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        border-radius: 50%;
-    }
-}
-
-/* ===== Очень маленькие экраны (≤ 480px) ===== */
-@media (max-width: 480px) {
-    .vinyl-player {
-        width: 65px;
-        height: 65px;
-        bottom: 8px;
-        right: 8px;
-    }
-}
-/* 2. В @media (max-width: 700px) заменить блок .hall-panorama и .vinyl-player */
-@media (max-width: 700px) {
-    /* ... */
-    .hall-panorama {
-        height: auto;
-        /* min-height удалён - больше не будет тёмной полосы */
-        overflow: visible;
-        background: #1f1914;
-        /* position: relative уже унаследован */
-    }
-    .vinyl-player {
-        top: auto;
-        bottom: 8px;
-        right: 8px;
-        transform: none;
-        width: 80px;
-        height: 80px;
-        margin: 0;
-        z-index: 20;
-    }
-    /* ... */
-}
-
-/* 3. Для совсем маленьких экранов подкорректировать размер */
-@media (max-width: 480px) {
-    .vinyl-player {
-        top: auto;
-        bottom: 5px;
-        right: 5px;
-        width: 65px;
-        height: 65px;
-    }
-}
+        
+        /* ===== Очень маленькие экраны (≤ 480px) – корректируем размер и отступы ===== */
         @media (max-width: 480px) {
             .exhibition-intro { padding: 2rem 1rem; }
             .exhibition-intro .intro-title { font-size: 1.5rem; }
@@ -271,18 +214,20 @@
             .hall-title { font-size: 1.3rem; }
             .expo-card { flex: 0 0 200px; }
             .mobile-hall-text { padding: 0.8rem 1rem; font-size: 0.82rem; margin: 0.8rem 0.8rem 0.5rem 0.8rem; }
-            .vinyl-player {
-                top: 50%;
-                right: -33px;
-                width: 65px;
-                height: 65px;
-            }
             .c-arrow { width: 38px; height: 38px; }
-            .hall-panorama { min-height: 240px; }
+            .hall-panorama { min-height: 240px; } /* небольшой запас, чтобы пластинка не вылезала */
             .modal-img { height: 200px; }
             .modal-container { width: 95vw; border-radius: 32px; }
             .modal-body { padding: 0.5rem 1rem 1.5rem; }
+            /* Пластинка чуть меньше и ближе к краю */
+            .vinyl-player {
+                width: 65px;
+                height: 65px;
+                bottom: 8px;
+                right: 8px;
+            }
         }
+        
         #recipesPage { padding: 2rem 5% 3rem; display: none; background: #FEF7EF; }
         #recipesPage.active { display: block; }
         .recipes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 2rem; }
@@ -394,8 +339,8 @@
         { name: "Зал 5 · Утро перед детским садом", items: ["hall5_kakao","hall5_butterbrod","hall5_ovsyanka","hall5_grenki","hall5_sgushenka","hall5_zefir","hall5_oreshki","hall5_zapekanka_tvorog"], imgSrc: "photos/IMG_20260427_213125_388.jpg", textPan: "Какао с пенкой, овсяная каша, сгущёнка и орешки — лучшее поощрение. Гренки с яйцом, зефир в шоколаде и творожная запеканка — тёплое утро без забот.", audioSrc: "audio/Aleksejj_Rybnikov_-_Usatyjj_nyan_Titry_73399744.mp3", vinylImg: vinylImages[4] }
     ];
 
-    // ---- функции панорамы, карусели, винила, модального окна и книги рецептов (без изменений логики) ----
-    function setupDesktopPanorama(panoramaElement, imgElement) { /* полный код из исходника (оставляем рабочим) */ 
+    // ---- функции панорамы, карусели, винила, модального окна и книги рецептов ----
+    function setupDesktopPanorama(panoramaElement, imgElement) {
         let translateY = 0, maxTranslate = 0, targetTranslate = 0, animationFrame = null, touchStartY = 0, currentTranslateOnTouchStart = 0;
         const updateLimits = () => { const imgH = imgElement.clientHeight, contH = panoramaElement.clientHeight; if (imgH <= contH) { maxTranslate = 0; translateY = 0; targetTranslate = 0; imgElement.style.transform = 'translateY(0px)'; return; } maxTranslate = imgH - contH; translateY = Math.min(0, Math.max(-maxTranslate, translateY)); targetTranslate = translateY; imgElement.style.transform = `translateY(${translateY}px)`; };
         const smoothScroll = () => { if (animationFrame) cancelAnimationFrame(animationFrame); const step = () => { const diff = targetTranslate - translateY; if (Math.abs(diff) < 0.5) { translateY = targetTranslate; imgElement.style.transform = `translateY(${translateY}px)`; animationFrame = null; return; } translateY += diff * 0.25; imgElement.style.transform = `translateY(${translateY}px)`; animationFrame = requestAnimationFrame(step); }; animationFrame = requestAnimationFrame(step); };

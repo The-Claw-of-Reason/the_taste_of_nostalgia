@@ -53,10 +53,12 @@
             overflow: hidden;
             flex-shrink: 0;
         }
-        .logo-circle svg {
-            width: 70%;
-            height: 70%;
-            fill: #8B694A;
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
         }
 
         .logo {
@@ -400,18 +402,23 @@
             margin-bottom: 0.25rem;
         }
 
-        /* Мобильный текстовый блок — без фона, рамок, теней, просто чистый текст */
+        /* Мобильный текстовый блок — аккуратная карточка после панорамы */
         .mobile-hall-text {
-            padding: 0.8rem 1rem 0.2rem 1rem;
-            font-size: 0.85rem;
+            margin: 1rem 1.2rem 0.5rem 1.2rem;
+            padding: 1rem 1.2rem;
+            background: #FFFEF9;
+            border-radius: 28px;
+            border: 1px solid #EEDBC8;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+            font-size: 0.9rem;
             line-height: 1.5;
             color: #3E2F23;
-            background: transparent;
-            border: none;
-            box-shadow: none;
         }
         .mobile-hall-text p {
             margin-bottom: 0.5rem;
+        }
+        .mobile-hall-text p:last-child {
+            margin-bottom: 0;
         }
 
         @keyframes spin {
@@ -554,7 +561,7 @@
             color: #6B4F33;
         }
 
-        /* Мобильные стили: панорама становится просто картинкой, текст вынесен и без фона */
+        /* Мобильные стили: панорама становится просто картинкой, текст вынесен в отдельный блок с рамкой */
         @media (max-width: 700px) {
             .hall-panorama {
                 height: auto;
@@ -615,6 +622,12 @@
                 height: 40px;
                 font-size: 1.2rem;
             }
+            .mobile-hall-text {
+                margin: 1rem 1rem 0.5rem 1rem;
+                padding: 0.9rem 1.2rem;
+                font-size: 0.85rem;
+                border-radius: 24px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -623,7 +636,7 @@
             .exhibition-intro .intro-text { font-size: 0.9rem; padding: 1rem 1.2rem; border-radius: 32px; }
             .hall-title { font-size: 1.3rem; }
             .expo-card { flex: 0 0 200px; }
-            .mobile-hall-text { padding: 0.6rem 0.8rem 0.2rem 0.8rem; font-size: 0.75rem; }
+            .mobile-hall-text { padding: 0.8rem 1rem; font-size: 0.8rem; margin: 0.8rem 0.8rem 0.5rem 0.8rem; }
             .vinyl-player { width: 70px; height: 70px; bottom: 6px; right: 8px; }
             .c-arrow { width: 38px; height: 38px; }
             .carousel-label { font-size: 0.6rem; }
@@ -834,11 +847,7 @@
 <nav class="main-nav">
     <div class="logo-wrapper">
         <div class="logo-circle">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="#8B694A" stroke-width="2"/>
-                <path d="M50 20 L65 50 L50 80 L35 50 Z" fill="#8B694A" opacity="0.7"/>
-                <circle cx="50" cy="50" r="8" fill="#8B694A"/>
-            </svg>
+            <img src="photos/лого.png" alt="Логотип" onerror="this.src='https://placehold.co/100x100?text=Logo'">
         </div>
         <div class="logo">
             <span class="logo-main">Вкус ностальгии</span>
@@ -967,7 +976,7 @@
         { name: "Зал 1 · Русская печь", items: ["hall1_shchi","hall1_kalach","hall1_kasha","hall1_sbiten","hall1_rastega","hall1_kisel","hall1_bliny","hall1_ryba"], imgSrc: "photos/IMG_20260427_214718_720.jpg", textPan: "Жаркое дыхание русской печи помнит вековые традиции: здесь щи томились долгими часами, гречневая каша таяла с маслом, а пряный сбитень согревал в стужу. Блины и калачи — душа домашнего застолья, где каждый кусочек хранит тепло прошлого.", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
         { name: "Зал 2 · Имперский пир", items: ["hall2_beefstroganoff","hall2_pirozhok_osetr","hall2_kulebyaka","hall2_ptifur","hall2_kurnik","hall2_zalivnoe","hall2_kulebyaka2","hall2_rasstegai"], imgSrc: "photos/IMG_20260427_214720_960.jpg", textPan: "Хрусталь, серебро, многослойные кулебяки. Бефстроганов для графа. Осетрина для балов. Чай с малиновым вареньем из самовара.", audioSrc: "audio/Luidzhi_Bokkerini_-_Menujet_76518024.mp3" },
         { name: "Зал 3 · Советская столовая", items: ["hall3_kotleta","hall3_olivier","hall3_kompot","hall3_pechenie","hall3_makarony","hall3_pelmeni","hall3_sosiski","hall3_pirozhok_povidlo"], imgSrc: "photos/IMG_20260427_214722_982.jpg", textPan: "Очередь за котлетой, стакан компота. Оливье под майонезом. Сосиски в тесте — вкус эпохи.", audioSrc: "audio/Aleksandr_Zacepin_-_Na_Strojjke_Operaciya_Y_61248537.mp3" },
-        { name: "Зал 4 · У бабушки на кухне", items: ["hall4_vareniki","hall4_mors","hall4_solenya","hall4_oladi","hall4_sharlotka","hall4_kholodets","hall4_zapekanka","hall4_buzhenina"], imgSrc: "photos/IMG_20260427_214725_873.jpg", textPan: "Вареники лепят всей семьёй. Хрустящие соленья из погреба. Шарлотка и буженина — тепло бабушкиных рук.", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+        { name: "Зал 4 · У бабушки на кухне", items: ["hall4_vareniki","hall4_mors","hall4_solenya","hall4_oladi","hall4_sharlotka","hall4_kholodets","hall4_zapekanka","hall4_buzhenina"], imgSrc: "photos/IMG_20260427_214725_873.jpg", textPan: "Вареники лепят всей семьёй. Хрустящие соленья из погреба. Шарлотка и буженина — тепло бабушкиных рук.", audioSrc: "audio/бабушка.MP3" },
         { name: "Зал 5 · Утро перед детским садом", items: ["hall5_kakao","hall5_butterbrod","hall5_ovsyanka","hall5_grenki","hall5_sgushenka","hall5_zefir","hall5_oreshki","hall5_zapekanka_tvorog"], imgSrc: "photos/IMG_20260427_213125_388.jpg", textPan: "Какао с пенкой, овсяная каша, сгущёнка и орешки — лучшее поощрение.", audioSrc: "audio/Aleksejj_Rybnikov_-_Usatyjj_nyan_Titry_73399744.mp3" }
     ];
 
@@ -1080,7 +1089,7 @@
             }
             card.appendChild(panoramaDiv);
             
-            // Для мобильной версии добавляем отдельный блок текста без фона
+            // Для мобильной версии добавляем отдельный блок текста с аккуратной рамкой
             if (isMobile) {
                 const mobileTextBlock = document.createElement("div"); 
                 mobileTextBlock.className = "mobile-hall-text";

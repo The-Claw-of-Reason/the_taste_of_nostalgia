@@ -18,6 +18,15 @@
             font-family: 'Inter', sans-serif;
             color: #3A2C22;
             line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* блокировка скролла при модалке */
+        body.modal-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
         }
 
         .main-nav {
@@ -149,10 +158,6 @@
             filter: brightness(0.55);
         }
 
-        .hero-logo img {
-            filter: brightness(1) !important;
-            opacity: 1;
-        }
         .hero-overlay {
             position: absolute;
             inset: 0;
@@ -461,17 +466,7 @@
             text-transform: uppercase;
             font-weight: 600;
         }
-            .hall-panorama {
-        overflow: visible;   /* вместо hidden */
-        /* остальные стили не трогаем */
-    }
 
-    .vinyl-player {
-        position: absolute;
-        bottom: -40px;       /* отрицательное значение — опускается вниз */
-        right: 1px;        /* отрицательное значение — выезжает вправо */
-        /* можно также использовать transform: translate(10px, 10px) */
-    }
         .track-outer {
             overflow-x: auto;
             scroll-behavior: smooth;
@@ -568,9 +563,16 @@
             color: #6B4F33;
         }
 
+        /* ---------- МОБИЛЬНЫЕ УЛУЧШЕНИЯ ---------- */
         @media (max-width: 700px) {
+            body, html {
+                overflow-x: hidden;
+                width: 100%;
+            }
             .hall-panorama {
                 height: auto;
+                min-height: 280px;
+                overflow: visible;
                 cursor: auto;
                 background: #1f1914;
             }
@@ -591,10 +593,10 @@
             }
             .vinyl-player {
                 position: absolute;
-                bottom: 10px;
+                bottom: 12px;
                 right: 12px;
-                width: 80px;
-                height: 80px;
+                width: 75px;
+                height: 75px;
                 margin: 0;
                 z-index: 20;
             }
@@ -630,7 +632,7 @@
             .mobile-hall-text {
                 margin: 1rem 1rem 0.5rem 1rem;
                 padding: 0.9rem 1.2rem;
-                font-size: 0.85rem;
+                font-size: 0.88rem;
                 border-radius: 24px;
             }
         }
@@ -641,12 +643,35 @@
             .exhibition-intro .intro-text { font-size: 0.9rem; padding: 1rem 1.2rem; border-radius: 32px; }
             .hall-title { font-size: 1.3rem; }
             .expo-card { flex: 0 0 200px; }
-            .mobile-hall-text { padding: 0.8rem 1rem; font-size: 0.8rem; margin: 0.8rem 0.8rem 0.5rem 0.8rem; }
-            .vinyl-player { width: 70px; height: 70px; bottom: 6px; right: 8px; }
+            .mobile-hall-text { 
+                padding: 0.8rem 1rem; 
+                font-size: 0.82rem; 
+                margin: 0.8rem 0.8rem 0.5rem 0.8rem; 
+            }
+            .vinyl-player { 
+                width: 65px; 
+                height: 65px; 
+                bottom: 8px; 
+                right: 8px; 
+            }
             .c-arrow { width: 38px; height: 38px; }
             .carousel-label { font-size: 0.6rem; }
+            .hall-panorama {
+                min-height: 240px;
+            }
+            .modal-img {
+                height: 200px;
+            }
+            .modal-container {
+                width: 95vw;
+                border-radius: 32px;
+            }
+            .modal-body {
+                padding: 0.5rem 1rem 1.5rem;
+            }
         }
 
+        /* страница рецептов */
         #recipesPage {
             padding: 2rem 5% 3rem;
             display: none;
@@ -671,6 +696,12 @@
         .recipe-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 22px 30px rgba(0,0,0,0.08);
+        }
+        .recipe-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #FAF3EA;
         }
         .recipe-info {
             padding: 1rem 1.2rem 1.2rem;
@@ -748,7 +779,7 @@
         .modal-bg {
             position: fixed;
             top:0; left:0; width:100%; height:100%;
-            background: rgba(40, 30, 22, 0.9);
+            background: rgba(40, 30, 22, 0.92);
             backdrop-filter: blur(12px);
             display: none;
             align-items: center;
@@ -803,8 +834,6 @@
             border-left: 4px solid #E6C87A;
             padding-left: 0.8rem;
         }
-
-
         .modal-history-text {
             font-size: 1rem;
             line-height: 1.5;
@@ -934,7 +963,7 @@
 
 <script>
     // --------------------------------------------------------------
-    // БАЗА ЭКСПОНАТОВ (полная, все залы) — без изменений
+    // БАЗА ЭКСПОНАТОВ (полная)
     // --------------------------------------------------------------
     const exhibitsDB = {
         hall1_shchi: { tag: "Зал1 · Блюдо", title: "Щи из квашеной капусты", img: "photos/1/unnamed.png", history: "Традиционные русские щи, томившиеся в печи 5–6 часов. Насыщенный кислый вкус, аромат укропа и сметаны.", ingredients: ["Капуста квашеная — 500 г", "Говядина — 600 г", "Картофель — 3 шт.", "Лук, морковь — по 1 шт.", "Лавровый лист, перец горошком"], steps: ["Сварить мясной бульон", "Добавить квашеную капусту, картофель, зажарку из лука и моркови", "Томить на малом огне 40 минут", "Подавать со сметаной и зеленью"] },
@@ -942,7 +971,7 @@
         hall1_rastega: { tag: "Зал1 · Выпечка", title: "Расстегай с рыбой", img: "photos/1/11 (2).png", history: "Открытый пирожок из дрожжевого теста с начинкой из рыбы, риса и зелени. Популярен в московских трактирах.", ingredients: ["Мука — 500 г", "Дрожжи — 10 г", "Филе рыбы — 300 г", "Рис — 50 г", "Лук репчатый — 1 шт."], steps: ["Замесить дрожжевое тесто", "Приготовить начинку: рыбу отварить, смешать с отварным рисом и пассерованным луком", "Сформировать расстегаи, оставив отверстие", "Выпекать при 200°C 25 минут"] },
         hall1_kisel: { tag: "Зал1 · Напиток", title: "Овсяный кисель", img: "photos/1/unnamed (5).png", history: "Густой, сытный кисель на овсяной основе. Традиционный русский десерт и лекарство от желудочных недугов.", ingredients: ["Овсяные хлопья — 200 г", "Вода — 1 л", "Мёд — 2 ст. ложки"], steps: ["Залить овсянку водой, оставить на ночь", "Процедить, варить на медленном огне до загустения", "Добавить мёд, подавать тёплым"] },
         hall1_kalach: { tag: "Зал1 · Керамика", title: "Калач московский", img: "photos/1/unnamed (4).png", history: "Пышный сдобный калач из пшеничной муки. Форма с ручкой — чтобы есть, держа за дужку (её потом выбрасывали).", ingredients: ["Мука — 600 г", "Молоко — 200 мл", "Яйца — 2 шт.", "Сахар — 80 г", "Дрожжи — 15 г"], steps: ["Замесить сдобное тесто", "Дать подняться дважды", "Сформировать калачи", "Выпекать 30 минут при 180°C"] },
-        hall1_sbiten: { tag: "Зал1 · Керамика", title: "------", img: "photos/1/unnamed (2).png", history: "", ingredients: ["у"], steps: [""] },
+        hall1_sbiten: { tag: "Зал1 · Керамика", title: "Сбитень", img: "photos/1/unnamed (2).png", history: "Пряный медовый напиток с травами, согревал в зимнюю стужу.", ingredients: ["Мёд — 150 г", "Вода — 1 л", "Имбирь, корица, гвоздика"], steps: ["Смешать мёд с водой, добавить пряности", "Кипятить 5 минут, настоять"] },
         hall1_bliny: { tag: "Зал1 · Керамика", title: "Блины", img: "photos/1/unnamed (3).png", history: "Тонкие, кружевные блины на масленицу. Пеклись из гречневой или пшеничной муки.", ingredients: ["Мука — 300 г", "Молоко — 500 мл", "Яйца — 2 шт.", "Масло растительное — 2 ст. ложки"], steps: ["Яйца взбить с солью и сахаром", "Добавить молоко, муку, замесить жидкое тесто", "Выпекать на раскалённой сковороде"] },
         hall1_ryba: { tag: "Зал1 · Керамика", title: "Рыба в чугунке", img: "photos/1/unnamed (1).png", history: "Запечённая в чугунке речная рыба с луком и зеленью. Простое крестьянское блюдо.", ingredients: ["Рыба — 1 кг", "Лук — 2 шт.", "Сметана — 100 г"], steps: ["Рыбу очистить, нарезать кусками", "В чугунок выложить рыбу, лук, сметану", "Томить в духовке 40 минут"] },
         hall2_beefstroganoff: { tag: "Зал2 · Блюдо", title: "Бефстроганов", img: "photos/2/21 (1).png", history: "Мясо в сметанном соусе, придуманное поваром графа Строганова. Символ императорской кухни XIX века.", ingredients: ["Говядина — 600 г", "Сметана — 200 г", "Лук — 1 шт.", "Мука — 1 ст. ложка"], steps: ["Нарезать мясо тонкими брусочками", "Обжарить с луком, добавить муку", "Влить сметану, тушить 15 минут"] },
@@ -979,7 +1008,6 @@
         hall5_zapekanka_tvorog: { tag: "Зал5 · Керамика", title: "Творожная запеканка", img: "photos/5/52 (3).png", history: "Как в детском саду — творожная запеканка с изюмом и сметаной.", ingredients: ["Творог — 500 г", "Яйца — 2 шт.", "Манка — 3 ст.л.", "Сахар — 100 г"], steps: ["Протереть творог, смешать с яйцами, манкой, сахаром", "Выложить в форму, выпекать 35 минут"] }
     };
 
-    // Уникальные изображения для пластинок (SVG-диски с разными цветами и подписью)
     const vinylImages = [
         "photos/3/ppp3.png",
         "photos/2/ppp2.png",  
@@ -996,7 +1024,6 @@
         { name: "Зал 5 · Утро перед детским садом", items: ["hall5_kakao","hall5_butterbrod","hall5_ovsyanka","hall5_grenki","hall5_sgushenka","hall5_zefir","hall5_oreshki","hall5_zapekanka_tvorog"], imgSrc: "photos/IMG_20260427_213125_388.jpg", textPan: "Какао с пенкой, овсяная каша, сгущёнка и орешки — лучшее поощрение.", audioSrc: "audio/Aleksejj_Rybnikov_-_Usatyjj_nyan_Titry_73399744.mp3", vinylImg: vinylImages[4] }
     ];
 
-    // Для десктопа: панорама с трансформацией (мышь/колесо)
     function setupDesktopPanorama(panoramaElement, imgElement) {
         let translateY = 0, maxTranslate = 0;
         let targetTranslate = 0;
@@ -1097,13 +1124,10 @@
             textSpan.innerHTML = hall.textPan.split(/[.!?] /).filter(s=>s.trim()).map(s=>`<p>${s.trim()}.</p>`).join('');
             
             const vinylDiv = document.createElement("div"); vinylDiv.className = "vinyl-player";
-            // НАЗНАЧАЕМ УНИКАЛЬНОЕ ИЗОБРАЖЕНИЕ ДЛЯ ПЛАСТИНКИ
             vinylDiv.style.backgroundImage = `url(${hall.vinylImg})`;
             panoramaDiv.appendChild(vinylDiv);
             
-            if (!isMobile) {
-                panoramaDiv.appendChild(textSpan);
-            }
+            if (!isMobile) panoramaDiv.appendChild(textSpan);
             card.appendChild(panoramaDiv);
             
             if (isMobile) {
@@ -1132,9 +1156,7 @@
                 }
             });
             initCarousel(idx);
-            if (!isMobile) {
-                setupDesktopPanorama(panoramaDiv, img);
-            }
+            if (!isMobile) setupDesktopPanorama(panoramaDiv, img);
             initVinyl(vinylDiv, hall.audioSrc);
         });
     }
@@ -1155,8 +1177,8 @@
     }
 
     let currentModalKey = null;
-    function openModal(key) { const ex = exhibitsDB[key]; if(!ex) return; currentModalKey = key; const modalImg = document.getElementById("modalImg"); modalImg.src = ex.img && ex.img.trim() !== "" ? ex.img : "https://placehold.co/600x300?text=Блюдо"; modalImg.onerror = () => { modalImg.src = "https://placehold.co/600x300?text=Кулинарный+экспонат"; }; document.getElementById("modalTag").innerText = ex.tag; document.getElementById("modalTitle").innerText = ex.title; document.getElementById("modalHistory").innerText = ex.history || "Традиционное блюдо русской кухни."; const ingList = document.getElementById("modalIngredientsList"); ingList.innerHTML = ex.ingredients.map(i => `<li>${escapeHtml(i)}</li>`).join(''); const stepsList = document.getElementById("modalStepsList"); stepsList.innerHTML = ex.steps.map(s => `<li>${escapeHtml(s)}</li>`).join(''); document.getElementById("modalBg").classList.add("open"); }
-    window.closeModal = () => document.getElementById("modalBg").classList.remove("open");
+    function openModal(key) { const ex = exhibitsDB[key]; if(!ex) return; currentModalKey = key; const modalImg = document.getElementById("modalImg"); modalImg.src = ex.img && ex.img.trim() !== "" ? ex.img : "https://placehold.co/600x300?text=Блюдо"; modalImg.onerror = () => { modalImg.src = "https://placehold.co/600x300?text=Кулинарный+экспонат"; }; document.getElementById("modalTag").innerText = ex.tag; document.getElementById("modalTitle").innerText = ex.title; document.getElementById("modalHistory").innerText = ex.history || "Традиционное блюдо русской кухни."; const ingList = document.getElementById("modalIngredientsList"); ingList.innerHTML = ex.ingredients.map(i => `<li>${escapeHtml(i)}</li>`).join(''); const stepsList = document.getElementById("modalStepsList"); stepsList.innerHTML = ex.steps.map(s => `<li>${escapeHtml(s)}</li>`).join(''); document.getElementById("modalBg").classList.add("open"); document.body.classList.add("modal-open"); }
+    window.closeModal = () => { document.getElementById("modalBg").classList.remove("open"); document.body.classList.remove("modal-open"); };
     document.getElementById("modalBg").addEventListener("click", e => { if(e.target === document.getElementById("modalBg")) closeModal(); });
 
     let savedRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
@@ -1166,8 +1188,8 @@
     document.getElementById("saveRecipeModalBtn").addEventListener("click", () => { if(currentModalKey && exhibitsDB[currentModalKey]) { const ex = exhibitsDB[currentModalKey]; const newR = { id:Date.now(), title:ex.title, tag:ex.tag, ingredients:ex.ingredients.join(", "), steps:ex.steps.join("\n"), img:ex.img }; if(!savedRecipes.some(r=>r.title===newR.title)) { savedRecipes.push(newR); localStorage.setItem("savedRecipes",JSON.stringify(savedRecipes)); alert("✅ Сохранено в книгу!"); renderRecipeBook(); } else alert("Уже есть в книге"); } });
     document.getElementById("addCustomRecipeBtn").addEventListener("click", () => { const title = document.getElementById("newTitle").value.trim(); if(!title) return alert("Введите название"); savedRecipes.push({ id:Date.now(), title, tag:document.getElementById("newTag").value, ingredients:document.getElementById("newIngredients").value, steps:document.getElementById("newSteps").value, img:"https://placehold.co/400x300" }); localStorage.setItem("savedRecipes",JSON.stringify(savedRecipes)); renderRecipeBook(); alert("Рецепт добавлен!"); document.getElementById("newTitle").value=""; document.getElementById("newIngredients").value=""; document.getElementById("newSteps").value=""; });
 
-    function showMain() { document.getElementById("mainPage").style.display = "block"; document.getElementById("recipesPage").classList.remove("active"); document.getElementById("mainTabBtn").classList.add("active"); document.getElementById("recipesTabBtn").classList.remove("active"); }
-    function showRecipes() { document.getElementById("mainPage").style.display = "none"; document.getElementById("recipesPage").classList.add("active"); renderRecipeBook(); document.getElementById("mainTabBtn").classList.remove("active"); document.getElementById("recipesTabBtn").classList.add("active"); }
+    function showMain() { document.getElementById("mainPage").style.display = "block"; document.getElementById("recipesPage").classList.remove("active"); document.getElementById("mainTabBtn").classList.add("active"); document.getElementById("recipesTabBtn").classList.remove("active"); closeModal(); }
+    function showRecipes() { document.getElementById("mainPage").style.display = "none"; document.getElementById("recipesPage").classList.add("active"); renderRecipeBook(); document.getElementById("mainTabBtn").classList.remove("active"); document.getElementById("recipesTabBtn").classList.add("active"); closeModal(); }
     document.getElementById("mainTabBtn").onclick = showMain; document.getElementById("recipesTabBtn").onclick = showRecipes;
     buildHalls(); showMain();
 </script>

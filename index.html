@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
     <title>Культурный код России — Вкус ностальгии</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('fonts/TDVolshebstvo.woff') format('woff');
+            font-weight: 700;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'MetrikaFont';
+            src: url('fonts/Metrika.woff') format('woff');
+            font-weight: 600;
+            font-display: swap;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #FEF7EF; font-family: 'Inter', sans-serif; color: #3A2C22; line-height: 1.5; overflow-x: hidden; }
         body.modal-open { overflow: hidden; position: fixed; width: 100%; height: 100%; }
@@ -19,9 +30,23 @@
         .logo-wrapper { display: flex; align-items: center; gap: 1rem; }
         .logo-circle { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; }
         .logo-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
-        .logo { font-family: 'Playfair Display', serif; display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
-        .logo-main { font-size: 1.5rem; font-weight: 700; color: #FEF0DA; letter-spacing: -0.3px; }
-        .logo-sub { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; color: #EAD5B2; text-transform: uppercase; margin-top: 4px; }
+        .logo { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
+        .logo-main {
+            font-family: 'MetrikaFont', 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FEF0DA;
+            letter-spacing: -0.3px;
+        }
+        .logo-sub {
+            font-family: 'MetrikaFont', 'Playfair Display', serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: #EAD5B2;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
         .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .nav-links a { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; letter-spacing: 0.03em; text-decoration: none; padding: 0.55rem 1.4rem; border-radius: 60px; cursor: pointer; transition: all 0.25s ease; background: transparent; color: #FFF0DE; border: 1px solid rgba(220,190,140,0.6); }
         .nav-links a.active, .nav-links a:hover { background: #C4A57B; color: #2A241C; border-color: #C4A57B; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
@@ -37,9 +62,35 @@
         .hero img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); }
         .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(0,0,0,0.55), rgba(0,0,0,0.2)); display: flex; align-items: center; justify-content: space-between; padding: 0 7%; gap: 2rem; flex-wrap: wrap; }
         .hero-text { text-align: left; flex: 1; }
-        .hero-main-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,8vw,5rem); font-weight: 700; color: white; text-shadow: 0 4px 22px rgba(0,0,0,0.4); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.2rem; }
-        .hero-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(1rem,3.5vw,2rem); font-weight: 500; color: #F7E5C2; letter-spacing: 0.02em; margin-bottom: 0.8rem; opacity: 0.95; }
-        .hero-description { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300; color: rgba(255,250,225,0.9); letter-spacing: 0.3px; border-top: 1px solid rgba(255,215,150,0.4); display: inline-block; padding-top: 0.8rem; }
+        .hero-main-title {
+            font-family: 'MyCustomFont', 'Playfair Display', serif;
+            font-size: clamp(2.5rem,8vw,5rem);
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 4px 22px rgba(0,0,0,0.4);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.2rem;
+        }
+        .hero-subtitle {
+            font-family: 'MetrikaFont', 'Playfair Display', serif;
+            font-size: clamp(1rem,3.5vw,2rem);
+            font-weight: 500;
+            color: #F7E5C2;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.8rem;
+            opacity: 0.95;
+        }
+        .hero-description {
+            font-family: 'MetrikaFont', 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(255,250,225,0.9);
+            letter-spacing: 0.3px;
+            border-top: 1px solid rgba(255,215,150,0.4);
+            display: inline-block;
+            padding-top: 0.8rem;
+        }
         .hero-logo { background: transparent; width: 360px; height: 360px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; filter: drop-shadow(0 0 12px rgba(0,0,0,0.5)); }
         .hero-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; filter: brightness(1.1) contrast(1.05); mix-blend-mode: normal; }
         @media (max-width: 780px) {
@@ -65,7 +116,17 @@
         .hall-card { position: relative; background: #FFFBF5; border-radius: 32px 32px 36px 36px; overflow: visible; box-shadow: 0 15px 32px rgba(0,0,0,0.05); transition: box-shadow 0.2s; }
         .hall-card:hover { box-shadow: 0 22px 36px rgba(0,0,0,0.08); }
         .hall-title-wrapper { padding: 1rem 2rem 0.5rem 2rem; background: #FFFBF5; }
-        .hall-title { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 600; color: #3E2F23; text-align: center; letter-spacing: -0.3px; display: flex; align-items: center; gap: 1rem; }
+        .hall-title {
+            font-family: 'MetrikaFont', 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #3E2F23;
+            text-align: center;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
         .hall-title::before, .hall-title::after { content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, #E6C87A, #DDBF8A, #E6C87A); }
         .hall-panorama {
             position: relative;
@@ -153,7 +214,7 @@
             body, html { overflow-x: hidden; width: 100%; }
             .hall-panorama { height: auto; cursor: auto; }
             .panorama-image-wrapper { height: auto; overflow: hidden; }
-            .panorama-img {   display: block; width: 100%; height: auto; transform: none !important; transition: none; pointer-events: auto; }
+            .panorama-img { display: block; width: 100%; height: auto; transform: none !important; transition: none; pointer-events: auto; }
             .hall-panorama .panorama-text { display: none; }
             .vinyl-player { position: absolute; top: auto; bottom: 12px; right: 12px; transform: none; width: 80px; height: 80px; margin: 0; z-index: 20; background-size: contain; border-radius: 50%; }
             .expo-card { flex: 0 0 230px; }
@@ -165,6 +226,12 @@
             .carousel-nav { margin: 0.5rem 1rem 0.2rem 1rem; }
             .c-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
             .mobile-hall-text { margin: 1rem 1rem 0.5rem 1rem; padding: 0.9rem 1.2rem; font-size: 0.88rem; border-radius: 24px; }
+        }
+        @media (max-width: 780px) {
+            .hero img {
+                object-fit: cover;
+                object-position: top 30% left 50%;
+            }
         }
         @media (max-width: 480px) {
             .exhibition-intro { padding: 2rem 1rem; }
@@ -223,15 +290,13 @@
     <div class="hero"><img src="photos/vibehype_20260426_184729_ca34a99e.jpg" alt="Русское застолье" onerror="this.src='https://placehold.co/1600x900?text=Культурный+код'"><div class="hero-overlay"><div class="hero-text"><div class="hero-main-title">Вкус ностальгии</div><div class="hero-subtitle">Культурный код России</div><div class="hero-description">Выставка — погружение в традиции</div></div><div class="hero-logo"><img src="photos/лого.png" alt="Логотип"></div></div></div>
     <div class="exhibition-intro"><div class="intro-title">«Вкус, который помнит время»</div><div class="intro-text"><p>Выставка <span class="accent">«Культурный код России: Вкус ностальгии»</span> — это путешествие сквозь эпохи. От жаркого пламени русской печи до императорских банкетов, от советских столовых до бабушкиной кухни.</p><p>Прокручивайте панорамы вручную, изучайте экспонаты. Карточки с керамикой отмечены особым оттенком. Откройте блюдо — внутри ждёт <span class="accent">история, детальный рецепт и список ингредиентов</span>. Сохраняйте любимое в Книгу рецептов!</p></div></div>
     <div class="halls-vertical-section"><div id="hallsStack" class="halls-stack"></div></div>
-    <footer><small>Тюмень 2026 • Культурный код России</small></footer>
+    <footer><small>Тюмень 2026 • Культурный код России </small></footer>
 </main>
 <div id="recipesPage"><div style="text-align:center; margin-bottom:1.5rem;"><h2 style="font-family:'Playfair Display'; color:#5C4330;">Книга рецептов</h2><p style="color:#876E52;">Сохраняйте кулинарные истории из экспозиции или добавляйте свои</p></div><div class="add-form"><label>Название блюда</label><input type="text" id="newTitle" placeholder="Бабушкин рецепт"><label>Раздел</label><select id="newTag"><option>Блюдо</option><option>Напиток</option><option>Десерт</option><option>Выпечка</option></select><label>Ингредиенты (каждый с новой строки)</label><textarea id="newIngredients" rows="2" placeholder="Мука - 300 г&#10;Яйца - 2 шт&#10;Молоко - 200 мл"></textarea><label>Приготовление (каждый шаг с новой строки)</label><textarea id="newSteps" rows="3" placeholder="Шаг 1: ...&#10;Шаг 2: ..."></textarea><label>История блюда (необязательно)</label><textarea id="newHistory" rows="2" placeholder="Традиционный рецепт из детства..."></textarea><label>Ссылка на изображение (URL)</label><input type="text" id="newImageUrl" placeholder="https://example.com/food.jpg"><button id="addCustomRecipeBtn" class="submit-btn"> + Сохранить рецепт</button></div><div id="recipesGrid" class="recipes-grid"></div></div>
 <div class="modal-bg" id="modalBg"><div class="modal-container"><button class="modal-close" onclick="closeModal()">✕</button><img class="modal-img" id="modalImg"><div class="modal-body"><div id="modalTag" style="color:#B48C5C; font-weight:500; margin-bottom:4px;"></div><h3 id="modalTitle" style="font-family:'Playfair Display'; margin:0 0 1rem 0; color:#3E2F23;"></h3><div class="modal-section"><h4>📜 История блюда</h4><div id="modalHistory" class="modal-history-text"></div></div><div class="modal-section"><h4>🥄 Ингредиенты</h4><ul id="modalIngredientsList" class="ingredients-list"></ul></div><div class="modal-section"><h4>🍳 Приготовление</h4><ol id="modalStepsList" class="steps-list"></ol></div><div style="display: flex; gap: 0.8rem; align-items: center;"><button id="saveRecipeModalBtn" class="save-recipe-btn">📌 Сохранить в книгу рецептов</button><button id="deleteRecipeModalBtn" class="delete-recipe-modal-btn" style="display:none;">🗑️ Удалить рецепт</button></div></div></div></div>
 
 <script>
-    // --------------------------------------------------------------
-    // БАЗА ЭКСПОНАТОВ (полная, без изменений)
-    // --------------------------------------------------------------
+
     const exhibitsDB = {
         hall1_shchi: { tag: "Зал1 · Блюдо", title: "Щи из квашеной капусты", img: "photos/1/unnamed.png", history: "Щи — душа русской кухни. В печи они томились по 5-6 часов, приобретая насыщенный кисловатый вкус. Квашеная капуста, говядина на кости и коренья создавали аромат, который разносился по всей избе.", ingredients: ["Квашеная капуста — 500 г", "Говядина на кости — 600 г", "Картофель — 3 шт.", "Лук, морковь — по 1 шт.", "Лавровый лист, перец горошком, укроп"], steps: ["Сварить крепкий мясной бульон (2 часа)", "Добавить квашеную капусту, варить 30 минут", "Положить картофель, зажарку из лука и моркови", "Томить на малом огне 40 минут, подавать со сметаной и рубленой зеленью"] },
         hall1_kalach: { tag: "Зал1 · Керамика", title: "Калач московский", img: "photos/1/unnamed (4).png", history: "Пышный сдобный калач из пшеничной муки — гордость московских булочников. Форма с ручкой позволяла есть, не испачкав рук: за дужку держали, а её потом выбрасывали или отдавали бедным.", ingredients: ["Мука пшеничная — 600 г", "Молоко — 200 мл", "Яйца — 2 шт.", "Сахар — 80 г", "Дрожжи — 15 г", "Сливочное масло — 80 г"], steps: ["Замесить сдобное дрожжевое тесто", "Дать подняться дважды", "Сформировать калачи с ручкой", "Выпекать 30 минут при 180°C"] },
@@ -268,7 +333,7 @@
         hall5_kakao: { tag: "Зал5 · Напиток", title: "Какао с пенкой", img: "photos/5/51 (3).png", history: "Горячий какао на молоке с густой пенкой — утренний ритуал в детском саду и школе. Подавали с бутербродом с маслом или печеньем.", ingredients: ["Молоко — 1 л", "Какао-порошок — 3 ст. ложки", "Сахар — 100 г"], steps: ["Развести какао с сахаром в небольшом количестве тёплого молока", "Влить остальное молоко, довести до кипения", "Варить 5 минут на медленном огне, помешивая", "Пить горячим, можно с пенкой"] },
         hall5_butterbrod: { tag: "Зал5 · Блюдо", title: "Бутерброд с маслом", img: "photos/5/51 (4).png", history: "Кусочек белого хлеба с маслом и посыпкой из сахара — простое угощение для советского ребёнка. Иногда сверху сыпали какао или корицу.", ingredients: ["Батон нарезной — 4 ломтика", "Масло сливочное — 50 г", "Сахар — по вкусу"], steps: ["Ломтики батона намазать маслом", "Посыпать сахаром, можно корицей", "Подавать к чаю или какао"] },
         hall5_ovsyanka: { tag: "Зал5 · Каша", title: "Овсяная каша", img: "photos/5/51 (1).png", history: "Геркулес на молоке с маслом — традиционная утренняя каша в детском саду. Чтобы дети ели охотнее, в неё добавляли ягоды или изюм.", ingredients: ["Овсяные хлопья (Геркулес) — 200 г", "Молоко — 500 мл", "Вода — 200 мл", "Сливочное масло — 20 г", "Сахар, соль"], steps: ["Вскипятить воду и молоко", "Всыпать хлопья, добавить соль и сахар", "Варить 10-15 минут, помешивая", "Добавить масло, дать настояться 5 минут"] },
-        hall5_grenki: { tag: "Зал5 · Сладость", title: "Гренки с яйцом", img: "photos/5/51 (2).png", history: "Сладкие гренки из батона, обжаренные в яйце с молоком и сахаром. Десерт из советского детства — хрустящие снаружи, мягкие внутри.", ingredients: ["Батон — 6 ломтиков", "Яйцо — 1 шт.", "Молоко — 50 мл", "Сахар — 2 ст. ложки", "Растительное масло для жарки"], steps: ["Взбить яйцо с молоком и сахаром", "Каждый ломтик батона обмакнуть в смесь", "Обжарить на сковороде с маслом до румяной корочки с двух сторон", "Подавать со сметаной или вареньем"] },
+        hall5_grenki: { tag: "Зал5 · Сладость", title: "Гренки", img: "photos/5/51 (2).png", history: "Сладкие гренки из батона, обжаренные в яйце с молоком и сахаром. Десерт из советского детства — хрустящие снаружи, мягкие внутри.", ingredients: ["Батон — 6 ломтиков", "Яйцо — 1 шт.", "Молоко — 50 мл", "Сахар — 2 ст. ложки", "Растительное масло для жарки"], steps: ["Взбить яйцо с молоком и сахаром", "Каждый ломтик батона обмакнуть в смесь", "Обжарить на сковороде с маслом до румяной корочки с двух сторон", "Подавать со сметаной или вареньем"] },
         hall5_sgushenka: { tag: "Зал5 · Керамика", title: "Сгущёнка", img: "photos/5/52 (4).png", history: "Варёная сгущёнка — любимое лакомство советских детей. Банку сгущённого молока варили в кастрюле 2-3 часа, получая густую карамельную массу. Ели ложками или мазали на печенье.", ingredients: ["Сгущённое молоко (цельное) — 1 банка"], steps: ["Снять этикетку с банки", "Поместить банку в кастрюлю, залить водой полностью", "Варить 2 часа (для более тёмной карамели — 3 часа) на тихом огне, подливая воду", "Полностью остудить, не открывая"] },
         hall5_zefir: { tag: "Зал5 · Керамика", title: "Зефир в шоколаде", img: "photos/5/52 (1).png", history: "Нежный зефир в шоколадной глазури — кондитерское удовольствие из детства. Белый или ванильный зефир окунали в растопленный шоколад и давали застыть.", ingredients: ["Зефир ванильный — 200 г", "Шоколад тёмный — 100 г", "Сливочное масло — 20 г (по желанию)"], steps: ["Шоколад поломать, растопить на водяной бане с маслом", "Каждый зефир окунуть в шоколад", "Выложить на пергамент, убрать в холодильник до застывания"] },
         hall5_oreshki: { tag: "Зал5 · Керамика", title: "Орешки со сгущёнкой", img: "photos/5/52 (2).png", history: "Печенье-орешки с варёной сгущёнкой — популярная выпечка из специальной формы-орешницы. Половинки выпекали на плите, заполняли сгущёнкой и склеивали.", ingredients: ["Мука — 300 г", "Сливочное масло — 150 г", "Яйцо — 1 шт.", "Сахар — 100 г", "Сгущёнка варёная — 200 г"], steps: ["Масло растереть с сахаром, добавить яйцо, муку, замесить тесто", "Выпечь половинки орешков в орешнице", "Остудить, наполнить варёной сгущёнкой", "Склеить половинки"] },
@@ -277,7 +342,7 @@
 
     const vinylImages = ["photos/1/ppp1.png","photos/2/ppp2.png","photos/3/ppp3.png","photos/4/ppp4.png","photos/5/ppp5.png"];
     const hallsData = [
-        { name: "Зал 1 · Русская печь", items: ["hall1_shchi","hall1_kalach","hall1_kasha","hall1_pirogi_rybnye","hall1_rastega","hall1_kisel","hall1_bliny","hall1_ryba"], imgSrc: "photos/IMG_20260427_214718_720.jpg", textPan: "Жаркое дыхание русской печи помнит вековые традиции: здесь щи томились долгими часами, гречневая каша таяла с маслом, а пряный сбитень согревал в стужу. Блины и калачи — душа домашнего застолья, где каждый кусочек хранит тепло прошлого.", audioSrc: "audio/YAroslava_Degtyarjova_-_Pechki-lavochki_60718857.mp3", vinylImg: vinylImages[0] },
+        { name: "Зал 1 · Русская печь", items: ["hall1_shchi","hall1_kalach","hall1_kasha","hall1_pirogi_rybnye","hall1_rastega","hall1_kisel","hall1_bliny","hall1_ryba"], imgSrc: "photos/IMG_20260427_214718_720.jpg", textPan: "Жаркое дыхание русской печи помнит вековые традиции: здесь щи томились долгими часами, гречневая каша таяла с маслом. Блины и калачи — душа домашнего застолья, где каждый кусочек хранит тепло прошлого.", audioSrc: "audio/YAroslava_Degtyarjova_-_Pechki-lavochki_60718857.mp3", vinylImg: vinylImages[0] },
         { name: "Зал 2 · Имперский пир", items: ["hall2_beefstroganoff","hall2_pirozhok_osetr","hall2_tea","hall2_ptifur","hall2_kurnik","hall2_zalivnoe","hall2_kulebyaka","hall2_rasstegai"], imgSrc: "photos/IMG_20260427_214720_960.jpg", textPan: "Хрусталь, серебро, многослойные кулебяки. Бефстроганов для графа. Осетрина для балов. Чай с малиновым вареньем из самовара — символ уютного дворянского чаепития.", audioSrc: "audio/Luidzhi_Bokkerini_-_Menujet_76518024.mp3", vinylImg: vinylImages[1] },
         { name: "Зал 3 · Советская столовая", items: ["hall3_kotleta","hall3_olivier","hall3_kompot","hall3_pechenie","hall3_makarony","hall3_pelmeni","hall3_sosiski","hall3_pirozhok_povidlo"], imgSrc: "photos/IMG_20260427_214722_982.jpg", textPan: "Очередь за котлетой, стакан компота. Оливье под майонезом. Сосиски в тесте — вкус эпохи. Печенье «Юбилейное» и макароны по-флотски — ностальгия по СССР.", audioSrc: "audio/Aleksandr_Zacepin_-_Na_Strojjke_Operaciya_Y_61248537.mp3", vinylImg: vinylImages[2] },
         { name: "Зал 4 · У бабушки на кухне", items: ["hall4_vareniki","hall4_mors","hall4_solenya","hall4_oladi","hall4_sharlotka","hall4_kholodets","hall4_zapekanka","hall4_buzhenina"], imgSrc: "photos/IMG_20260427_214725_873.jpg", textPan: "Вареники лепят всей семьёй. Хрустящие соленья из погреба. Шарлотка и буженина — тепло бабушкиных рук. Морс и оладьи — из детства.", audioSrc: "audio/бабушка.MP3", vinylImg: vinylImages[3] },

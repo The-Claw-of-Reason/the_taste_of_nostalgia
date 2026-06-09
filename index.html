@@ -349,7 +349,6 @@ const hallsData = [
     { name: "Зал 5 · Утро перед детским садом", items: ["hall5_kakao","hall5_butterbrod","hall5_ovsyanka","hall5_grenki","hall5_sgushenka","hall5_zefir","hall5_oreshki","hall5_zapekanka_tvorog"], imgSrc: "photos/IMG_20260427_213125_388.jpg", textPan: "Детство без забот: кружка какао с пенкой, сладкий бутерброд и овсяная каша «не хочу, но надо». Скролльте панораму - увидите игрушечных мишек и пластиковую посуду. Варёная сгущёнка, орешки и творожная запеканка - то, от чего улыбка становится шире. Помните?", audioSrc: "audio/Aleksejj_Rybnikov_-_Usatyjj_nyan_Titry_73399744.mp3", vinylImg: vinylImages[4] }
 ];
 
-    // ---- вспомогательные функции ----
     let savedRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
     let currentModalExhibitKey = null;
     let currentModalRecipeId = null;
@@ -511,7 +510,7 @@ const hallsData = [
         document.getElementById("newImageUrl").value = "";
     });
 
-    // ---- функции панорам, каруселей, винила (оригинал, без изменений) ----
+
     function setupDesktopPanorama(panoramaElement, imgElement) {
         let translateY = 0, maxTranslate = 0, targetTranslate = 0, animationFrame = null, touchStartY = 0, currentTranslateOnTouchStart = 0;
         const updateLimits = () => { const imgH = imgElement.clientHeight, contH = panoramaElement.clientHeight; if (imgH <= contH) { maxTranslate = 0; translateY = 0; targetTranslate = 0; imgElement.style.transform = 'translateY(0px)'; return; } maxTranslate = imgH - contH; translateY = Math.min(0, Math.max(-maxTranslate, translateY)); targetTranslate = translateY; imgElement.style.transform = `translateY(${translateY}px)`; };
